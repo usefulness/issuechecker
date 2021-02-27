@@ -1,0 +1,22 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
+buildscript {
+    repositories.google()
+}
+
+plugins {
+    id 'com.starter.config' version '0.23.0'
+    id 'com.starter.versioning' version '0.23.0'
+}
+
+commonConfig {
+    javaFilesAllowed false
+}
+
+allprojects {
+    tasks.withType(KotlinCompile).configureEach {
+        kotlinOptions {
+            apiVersion = '1.3'
+        }
+    }
+}
