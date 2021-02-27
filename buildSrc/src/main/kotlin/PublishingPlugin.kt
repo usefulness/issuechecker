@@ -49,12 +49,20 @@ class PublishingPlugin : Plugin<Project> {
                 register("mavenJava", MavenPublication::class.java) { publication ->
                     publication.from(components.getByName("java"))
                     publication.pom { pom ->
+                        pom.name.set("${project.group}:${project.name}")
                         pom.description.set("A tool that scans sources for all resolved lisks to public trackers")
                         pom.url.set("https://github.com/usefulness/issuechecker")
                         pom.licenses { licenses ->
                             licenses.license { license ->
                                 license.name.set("MIT")
                                 license.url.set("https://github.com/usefulness/issuechecker/blob/master/LICENSE")
+                            }
+                        }
+                        pom.developers { developers ->
+                            developers.developer { developer ->
+                                developer.id.set("mateuszkwiecinski")
+                                developer.name.set("Mateusz Kwiecinski")
+                                developer.email.set("36954793+mateuszkwiecinski@users.noreply.github.com")
                             }
                         }
                         pom.scm { scm ->
