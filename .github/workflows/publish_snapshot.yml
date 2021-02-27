@@ -36,4 +36,6 @@ jobs:
     - name: Publish to Maven Central
       run: ./gradlew publishMavenJavaPublicationToMavenCentralSnapshotRepository
     - name: Publish to Github Package Registry
-      run: ./gradlew publishMavenJavaPublicationToGithubRepository || true
+      run: ./gradlew publishMavenJavaPublicationToGithubRepository
+    - name: Publish CLI to Github Package Registry
+      run: ./gradlew publishShadowPublicationToGithubRepository
