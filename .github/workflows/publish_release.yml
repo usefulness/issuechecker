@@ -25,5 +25,9 @@ jobs:
         java-version: 15
     - name: Build app with Gradle
       run: ./gradlew build
-    - name: Publish library
-      run: ./gradlew publish --continue || true
+    - name: Publish to Github Package Registry
+      run: ./gradlew publishMavenJavaPublicationToGithubRepository
+    - name: Publish CLI to Github Package Registry
+      run: ./gradlew publishShadowPublicationToGithubRepository
+    - name: Publish to Maven Central
+      run: ./gradlew publishMavenJavaPublicationToMavenCentralRepository
