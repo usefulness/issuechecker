@@ -25,7 +25,7 @@ publishing {
     repositories {
         maven {
             name "github"
-            url "https://maven.pkg.github.com/usefulness/project-starter"
+            url "https://maven.pkg.github.com/usefulness/issuechecker"
             credentials {
                 username = "usefulness"
                 password = findProperty("GITHUB_TOKEN")?.toString() ?: System.getenv("GITHUB_TOKEN") ?: ""
