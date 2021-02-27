@@ -14,6 +14,7 @@ class PublishingPlugin : Plugin<Project> {
 
         extensions.configure<JavaPluginExtension> {
             withSourcesJar()
+            withJavadocJar()
         }
         extensions.configure<PublishingExtension> {
             with(repositories) {
