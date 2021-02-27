@@ -46,8 +46,23 @@ class PublishingPlugin : Plugin<Project> {
                 }
             }
             with(publications) {
-                register("mavenJava", MavenPublication::class.java) {
-                    it.from(components.getByName("java"))
+                register("mavenJava", MavenPublication::class.java) { publication ->
+                    publication.from(components.getByName("java"))
+                    publication.pom { pom ->
+                        pom.description.set("A tool that scans sources for all resolved lisks to public trackers")
+                        pom.url.set("https://github.com/usefulness/issuechecker")
+                        pom.licenses { licenses ->
+                            licenses.license { license ->
+                                license.name.set("MIT")
+                                license.url.set("https://github.com/usefulness/issuechecker/blob/master/LICENSE")
+                            }
+                        }
+                        pom.scm { scm ->
+                            scm.connection.set("scm:git:github.com/usefulness/issuechecker.git")
+                            scm.developerConnection.set("scm:git:ssh://github.com/usefulness/issuechecker.git")
+                            scm.url.set("https://github.com/usefulness/issuechecker/tree/master")
+                        }
+                    }
                 }
             }
         }
