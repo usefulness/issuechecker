@@ -4,7 +4,7 @@ import com.starter.issuechecker.resolvers.github.GithubService
 import com.starter.issuechecker.resolvers.github.GithubStatusResolver
 import com.starter.issuechecker.resolvers.youtrack.YoutrackService
 import com.starter.issuechecker.resolvers.youtrack.YoutrackStatusResolver
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.asCoroutineDispatcher
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -13,16 +13,14 @@ import java.util.concurrent.Executor
 internal fun defaultChecker(
     config: IssueChecker.Config
 ): DefaultChecker {
-    val dispatcher = Dispatchers.IO
-
     val supportedTrackers = setOf(
         createGithub(config),
-        createYoutrack(config)
+        createYoutrack(config),
     )
 
     return DefaultChecker(
         supportedTrackers = supportedTrackers,
-        dispatcher = Dispatchers.IO
+        dispatcher = config.executor.asCoroutineDispatcher(),
     )
 }
 
