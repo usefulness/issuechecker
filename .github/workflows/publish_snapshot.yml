@@ -17,25 +17,34 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
-    - name: Set up Java
-      uses: actions/setup-java@v1
-      with:
-        java-version: 15
-    - name: Cache .gradle
-      uses: burrunan/gradle-cache-action@v1
-    - name: Unwrap GPG key
-      env:
-        GPG_KEY_CONTENTS: ${{ secrets.GPG_KEY_CONTENTS }}
-        SIGNING_SECRET_KEY_RING_FILE: ${{ secrets.SIGNING_SECRET_KEY_RING_FILE }}
-      run: sudo bash -c "echo '$GPG_KEY_CONTENTS' | base64 -d > '$SIGNING_SECRET_KEY_RING_FILE'"
-    - name: Build app with Gradle
-      run: ./gradlew assemble
-    - name: Publish to Maven Central
-      run: ./gradlew publishMavenJavaPublicationToMavenCentralSnapshotRepository
-    - name: Publish to Github Package Registry
-      run: ./gradlew publishMavenJavaPublicationToGithubRepository
-    - name: Publish CLI to Github Package Registry
-      run: ./gradlew publishShadowPublicationToGithubRepository
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Set up Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 15
+
+      - name: Cache .gradle
+        uses: burrunan/gradle-cache-action@v1
+        with:
+          gradle-distribution-sha-256-sum-warning: false
+
+      - name: Unwrap GPG key
+        env:
+          GPG_KEY_CONTENTS: ${{ secrets.GPG_KEY_CONTENTS }}
+          SIGNING_SECRET_KEY_RING_FILE: ${{ secrets.SIGNING_SECRET_KEY_RING_FILE }}
+        run: sudo bash -c "echo '$GPG_KEY_CONTENTS' | base64 -d > '$SIGNING_SECRET_KEY_RING_FILE'"
+
+      - name: Build app with Gradle
+        run: ./gradlew assemble
+
+      - name: Publish to Maven Central
+        run: ./gradlew publishMavenJavaPublicationToMavenCentralSnapshotRepository
+
+      - name: Publish to Github Package Registry
+        run: ./gradlew publishMavenJavaPublicationToGithubRepository
+
+      - name: Publish CLI to Github Package Registry
+        run: ./gradlew publishShadowPublicationToGithubRepository
