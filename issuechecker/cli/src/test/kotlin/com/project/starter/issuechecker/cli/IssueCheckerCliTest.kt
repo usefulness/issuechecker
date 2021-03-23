@@ -12,6 +12,7 @@ internal class IssueCheckerCliTest {
     private val outContent = ByteArrayOutputStream()
     private val errContent = ByteArrayOutputStream()
     private val original = System.out to System.err
+    private val link = "https://github.com/fixture/issue/issues/2137"
 
     @BeforeEach
     internal fun setUp() {
@@ -26,7 +27,7 @@ internal class IssueCheckerCliTest {
     }
 
     @Test
-    internal fun `recognizes all options`() {
+    fun `recognizes all options`() {
         main(arrayOf("--debug", "--stacktrace", "--dry-run", "--source", "**.kt"))
 
         assertThat(outContent.toString()).containsPattern("Working dir: .*/issuechecker/cli")
@@ -35,11 +36,25 @@ internal class IssueCheckerCliTest {
     }
 
     @Test
-    internal fun `recognizes source options`() {
-        val link = "https://github.com/fixture/issue/issues/2137"
-
+    fun `recognizes source options`() {
         main(arrayOf("--source", "**/IssueCheckerCliTest.kt"))
 
         assertThat(errContent.toString()).contains("-> Couldn't check url $link")
+    }
+
+    @Test
+    fun `recognizes multi source options`() {
+        main(
+            arrayOf(
+                "--source",
+                "src/test/kotlin/com/project/starter/issuechecker/cli/NoLinksHelper.kt, build.gradle",
+                "--dry-run",
+                "--debug",
+            )
+        )
+
+        assertThat(outContent.toString())
+            .containsPattern("Visiting file .*/cli/NoLinksHelper.kt")
+            .containsPattern("Visiting file build.gradle")
     }
 }
