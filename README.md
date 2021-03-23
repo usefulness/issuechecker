@@ -23,15 +23,17 @@ Additionally, it exposes a fat Jar which serves as a CLI.
 
 The core dependency is available under:
 ```groovy
+repositories.mavenCenral()
+
 dependencies {
     implementation("com.github.usefulness:issuechecker:x.y.z")
 }
 ```
 
 ### Common application
-- CLI - A `jar` file available directly on Github Package Repository - [download page](https://github.com/usefulness/issuechecker/packages/641930) 
-- Gradle Plugin - `com.starter.quality` plugin runs the tool automatically under `issueLinksReport` name - [source](https://github.com/usefulness/project-starter) 
-- Github Action - ⏳ In progress ⏳ 
+- **CLI** - A `jar` file available directly on Github Package Repository - [download page](https://github.com/usefulness/issuechecker/packages/641930) 
+- **Gradle Plugin** - `com.starter.quality` plugin runs the tool automatically under `issueLinksReport` name - [source](https://github.com/usefulness/project-starter) 
+- **Github Action** - ⏳ In progress ⏳ 
 
 
 #### CLI 
@@ -50,12 +52,12 @@ Options:
 
 Sample commands:
 
-- Find all links in files with `.kt` extension  
+- Find all links in files with `.kt` extension:  
 ```bash
 java -jar issue-checker-cli.jar --dry-run --source "**.kt"
 ```
 
-- Find and check all links in files with `.java` extension
+- Find and check all links in files with `.java` extension:  
 ```bash
 java -jar issue-checker-cli.jar --source "**.java"
 ```
