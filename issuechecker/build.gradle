@@ -1,7 +1,5 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
-    id 'com.starter.library.kotlin' version '0.25.0'
+    id 'com.starter.library.kotlin' version '0.26.2'
     id 'kotlin-kapt'
     id 'com.starter.publishing'
 }
@@ -10,12 +8,6 @@ test {
     useJUnitPlatform()
     testLogging {
         events "skipped", "failed"
-    }
-}
-
-tasks.withType(KotlinCompile).configureEach {
-    kotlinOptions {
-        freeCompilerArgs += "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
     }
 }
 

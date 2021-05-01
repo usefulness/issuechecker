@@ -23,7 +23,7 @@ Additionally, it exposes a fat Jar which serves as a CLI.
 
 The core dependency is available under:
 ```groovy
-repositories.mavenCenral()
+repositories.mavenCentral()
 
 dependencies {
     implementation("com.github.usefulness:issuechecker:x.y.z")
