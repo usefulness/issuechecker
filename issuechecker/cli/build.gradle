@@ -9,7 +9,7 @@ application {
     mainClass.set("com.project.starter.issuechecker.cli.Main")
 }
 
-test {
+tasks.named("test") {
     useJUnitPlatform()
     testLogging {
         events "skipped", "failed"
