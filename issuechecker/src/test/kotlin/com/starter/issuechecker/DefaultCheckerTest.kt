@@ -1,6 +1,7 @@
 package com.starter.issuechecker
 
 import com.starter.issuechecker.resolvers.StatusResolver
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.runBlockingTest
 import org.assertj.core.api.Assertions.assertThat
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import java.net.URL
 
+@ExperimentalCoroutinesApi
 internal class DefaultCheckerTest {
 
     private val statusResolver = FakeStatusResolver()
