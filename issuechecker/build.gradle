@@ -1,5 +1,5 @@
 plugins {
-    id 'com.starter.library.kotlin' version '0.27.1'
+    id 'com.starter.library.kotlin' version '0.27.2'
     id 'kotlin-kapt'
     id 'com.starter.publishing'
 }
