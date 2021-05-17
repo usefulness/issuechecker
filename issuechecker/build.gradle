@@ -12,14 +12,15 @@ tasks.named("test") {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3"
+    def coroutinesVersion = "1.5.0"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
     api "com.squareup.okhttp3:okhttp:4.9.1"
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
     implementation "com.squareup.retrofit2:converter-moshi:2.9.0"
     implementation "com.squareup.moshi:moshi-kotlin:1.12.0"
     kapt "com.squareup.moshi:moshi-kotlin-codegen:1.12.0"
 
-    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.3"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
     testImplementation "com.squareup.okhttp3:mockwebserver:4.9.1"
     testImplementation "org.assertj:assertj-core:3.19.0"
     testImplementation "org.junit.jupiter:junit-jupiter:5.7.2"
