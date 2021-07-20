@@ -40,7 +40,7 @@ jobs:
         run: ./gradlew projectCoverage
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v2.0.1
+        uses: codecov/codecov-action@v2
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
 
