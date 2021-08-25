@@ -25,7 +25,6 @@ allprojects {
             apiVersion = '1.4'
         }
     }
-
     pluginManager.withPlugin("java") {
         java {
             toolchain {
