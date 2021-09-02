@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id 'com.starter.config' version '0.34.0'
+    id 'com.starter.config' version '0.35.0'
     id 'com.starter.versioning' version '0.35.0'
 }
 
