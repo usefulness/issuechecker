@@ -1,8 +1,8 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id 'com.starter.config' version '0.35.0'
-    id 'com.starter.versioning' version '0.35.0'
+    id 'com.starter.config' version '0.36.0'
+    id 'com.starter.versioning' version '0.36.0'
 }
 
 commonConfig {
@@ -23,13 +23,6 @@ allprojects {
     tasks.withType(KotlinCompile).configureEach {
         kotlinOptions {
             apiVersion = '1.4'
-        }
-    }
-    pluginManager.withPlugin("java") {
-        java {
-            toolchain {
-                languageVersion.set(JavaLanguageVersion.of(8))
-            }
         }
     }
 }
