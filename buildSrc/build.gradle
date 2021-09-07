@@ -12,6 +12,10 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-gradle-plugin"
 }
 
+tasks.withType(JavaCompile).configureEach {
+    options.release.set(8)
+}
+
 gradlePlugin {
     plugins {
         publishingPlugin {
