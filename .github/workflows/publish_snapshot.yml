@@ -38,22 +38,18 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           arguments: assemble
-          dependencies-cache-enabled: true
 
       - name: Publish to Maven Central
         uses: gradle/gradle-build-action@v2
         with:
           arguments: publishMavenJavaPublicationToMavenCentralSnapshotRepository
-          dependencies-cache-enabled: true
 
       - name: Publish to Github Package Registry
         uses: gradle/gradle-build-action@v2
         with:
           arguments: publishMavenJavaPublicationToGithubRepository
-          dependencies-cache-enabled: true
 
       - name: Publish CLI to Github Package Registry
         uses: gradle/gradle-build-action@v2
         with:
           arguments: publishShadowPublicationToGithubRepository
-          dependencies-cache-enabled: true
