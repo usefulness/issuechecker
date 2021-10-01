@@ -34,25 +34,25 @@ jobs:
         run: sudo bash -c "echo '$GPG_KEY_CONTENTS' | base64 -d > '$SIGNING_SECRET_KEY_RING_FILE'"
 
       - name: Build app with Gradle
-        uses: gradle/gradle-build-action@v1
+        uses: gradle/gradle-build-action@v2
         with:
           arguments: assemble
           dependencies-cache-enabled: true
 
       - name: Publish to Maven Central
-        uses: gradle/gradle-build-action@v1
+        uses: gradle/gradle-build-action@v2
         with:
           arguments: publishMavenJavaPublicationToMavenCentralRepository
           dependencies-cache-enabled: true
 
       - name: Publish to Github Package Registry
-        uses: gradle/gradle-build-action@v1
+        uses: gradle/gradle-build-action@v2
         with:
           arguments: publishMavenJavaPublicationToGithubRepository
           dependencies-cache-enabled: true
 
       - name: Publish CLI to Github Package Registry
-        uses: gradle/gradle-build-action@v1
+        uses: gradle/gradle-build-action@v2
         with:
           arguments: publishShadowPublicationToGithubRepository
           dependencies-cache-enabled: true
