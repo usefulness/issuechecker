@@ -1,14 +1,14 @@
 name: Generate dependency diff
 
+permissions:
+  pull-requests: write
+  issues: write
 on:
   pull_request:
 
 jobs:
   generate-diff:
     runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
-      issues: write
 
     steps:
       - uses: actions/checkout@v2
