@@ -26,19 +26,19 @@ jobs:
         uses: gradle/wrapper-validation-action@v1
 
       - name: Code style
-        uses: gradle/gradle-build-action@v1
+        uses: gradle/gradle-build-action@v2
         with:
           arguments: projectCodestyle
           dependencies-cache-enabled: true
 
       - name: Assemble
-        uses: gradle/gradle-build-action@v1
+        uses: gradle/gradle-build-action@v2
         with:
           arguments: assemble
           dependencies-cache-enabled: true
 
       - name: Jacoco test report
-        uses: gradle/gradle-build-action@v1
+        uses: gradle/gradle-build-action@v2
         with:
           arguments: projectCoverage
           dependencies-cache-enabled: true
