@@ -11,7 +11,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.Executor
 
 internal fun defaultChecker(
-    config: IssueChecker.Config
+    config: IssueChecker.Config,
 ): DefaultChecker {
     val supportedTrackers = setOf(
         createGithub(config),
@@ -42,7 +42,7 @@ private fun createYoutrack(
         baseUrl = "https://youtrack.jetbrains.com/",
         okHttpClient = config.okHttpClient,
         executor = config.executor,
-    ).create(YoutrackService::class.java)
+    ).create(YoutrackService::class.java),
 )
 
 private fun createGithub(
@@ -52,7 +52,7 @@ private fun createGithub(
         baseUrl = "https://api.github.com/",
         okHttpClient = config.okHttpClient.githubOkHttpClient { config.githubToken },
         executor = config.executor,
-    ).create(GithubService::class.java)
+    ).create(GithubService::class.java),
 )
 
 private fun OkHttpClient.githubOkHttpClient(auth: () -> String?) =

@@ -22,7 +22,7 @@ class IssueCheckerCli : CliktCommand() {
         "--src",
         "-s",
         "--source",
-        help = "Source file filter, i.e. `--source **.java` to find all java files"
+        help = "Source file filter, i.e. `--source **.java` to find all java files",
     ).split(",")
     private val githubToken by option(help = "Github token to check private issues")
     private val debug by option("--debug", "-d", help = "Enables additional logging").flag()
@@ -35,7 +35,7 @@ class IssueCheckerCli : CliktCommand() {
             config = IssueChecker.Config(
                 githubToken = githubToken,
                 okHttpClient = okHttpClient,
-            )
+            ),
         )
     }
 

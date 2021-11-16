@@ -19,8 +19,8 @@ internal class FunctionalTest {
         assertThat(result).containsExactly(
             CheckResult.Success(
                 issueUrl = "https://youtrack.jetbrains.com/issue/KT-36808/",
-                issueStatus = IssueStatus.Closed
-            )
+                issueStatus = IssueStatus.Closed,
+            ),
         )
     }
 

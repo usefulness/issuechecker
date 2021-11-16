@@ -10,7 +10,7 @@ import java.net.URL
 
 internal class DefaultChecker internal constructor(
     private val supportedTrackers: Set<StatusResolver>,
-    private val dispatcher: CoroutineDispatcher
+    private val dispatcher: CoroutineDispatcher,
 ) {
 
     suspend fun getLinks(text: String) = withContext(dispatcher) {
@@ -29,13 +29,13 @@ internal class DefaultChecker internal constructor(
                     runCatching {
                         CheckResult.Success(
                             issueUrl = url.toString(),
-                            issueStatus = resolver.resolve(url = url)
+                            issueStatus = resolver.resolve(url = url),
                         )
                     }
                         .getOrElse {
                             CheckResult.Error(
                                 issueUrl = url.toString(),
-                                throwable = it
+                                throwable = it,
                             )
                         }
                 }

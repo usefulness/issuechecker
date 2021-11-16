@@ -9,7 +9,7 @@ import retrofit2.http.Path
 import java.net.URL
 
 internal class GithubStatusResolver(
-    private val service: GithubService
+    private val service: GithubService,
 ) : StatusResolver {
 
     override suspend fun resolve(url: URL): IssueStatus {
@@ -46,12 +46,12 @@ internal interface GithubService {
     suspend fun getIssue(
         @Path("owner") owner: String,
         @Path("repo") repo: String,
-        @Path("issueId") issueId: String
+        @Path("issueId") issueId: String,
     ): GithubIssue
 }
 
 @JsonClass(generateAdapter = true)
 internal data class GithubIssue(
     @Json(name = "title") val title: String,
-    @Json(name = "closed_at") val closedAt: String?
+    @Json(name = "closed_at") val closedAt: String?,
 )

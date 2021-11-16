@@ -52,7 +52,7 @@ internal class GithubStatusResolverTest {
             "https://www.github.com/pinterest/ktlint/issues/728" to true,
             "https://github.com/pinterest/ktlint/issues/728/" to true,
             "https://github.com/scottdweber" to false,
-            "https://github.com/pinterest/ktlint/blob/master/CONTRIBUTING.md" to false
+            "https://github.com/pinterest/ktlint/blob/master/CONTRIBUTING.md" to false,
         )
         assertSoftly {
             links.forEach { (url, expected) ->

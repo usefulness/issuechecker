@@ -50,7 +50,7 @@ internal class IssueCheckerCliTest {
                 "src/test/kotlin/com/project/starter/issuechecker/cli/NoLinksHelper.kt, build.gradle",
                 "--dry-run",
                 "--debug",
-            )
+            ),
         )
 
         assertThat(outContent.toString())

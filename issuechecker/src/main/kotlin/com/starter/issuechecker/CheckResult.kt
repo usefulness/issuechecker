@@ -4,12 +4,12 @@ sealed class CheckResult {
 
     data class Success(
         val issueUrl: String,
-        val issueStatus: IssueStatus
+        val issueStatus: IssueStatus,
     ) : CheckResult()
 
     data class Error(
         val issueUrl: String,
-        val throwable: Throwable
+        val throwable: Throwable,
     ) : CheckResult()
 }
 

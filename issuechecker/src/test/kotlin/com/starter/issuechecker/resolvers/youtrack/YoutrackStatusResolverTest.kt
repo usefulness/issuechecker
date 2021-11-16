@@ -38,7 +38,7 @@ internal class YoutrackStatusResolverTest {
             "https://youtrack.jetbrains.com/issue/KT-34230" to true,
             "https://www.youtrack.jetbrains.com/issue/KT-34230" to true,
             "https://youtrack.jetbrains.com/issue/KT-34230/" to true,
-            "https://www.jetbrains.com/help/youtrack/standalone/api-entities.html" to false
+            "https://www.jetbrains.com/help/youtrack/standalone/api-entities.html" to false,
         )
         SoftAssertions.assertSoftly {
             links.forEach { (url, expected) ->
