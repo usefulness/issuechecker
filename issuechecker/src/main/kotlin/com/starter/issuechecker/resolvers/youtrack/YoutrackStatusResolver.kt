@@ -11,7 +11,7 @@ import retrofit2.http.Path
 import java.net.URL
 
 internal class YoutrackStatusResolver(
-    private val service: YoutrackService
+    private val service: YoutrackService,
 ) : StatusResolver {
 
     override fun handles(url: URL): Boolean =
@@ -45,5 +45,5 @@ internal interface YoutrackService {
 internal data class YoutrackIssue(
     @Json(name = "idReadable") val idReadable: String,
     @Json(name = "summary") val summary: String,
-    @Json(name = "resolved") val resolved: String?
+    @Json(name = "resolved") val resolved: String?,
 )

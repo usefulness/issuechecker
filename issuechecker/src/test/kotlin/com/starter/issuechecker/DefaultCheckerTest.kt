@@ -21,7 +21,7 @@ internal class DefaultCheckerTest {
     internal fun setUp() {
         checker = DefaultChecker(
             supportedTrackers = setOf(statusResolver),
-            dispatcher = testDispatcher
+            dispatcher = testDispatcher,
         )
     }
 
@@ -64,12 +64,12 @@ internal class DefaultCheckerTest {
         assertThat(result).containsExactly(
             CheckResult.Success(
                 issueUrl = "https://fixture.url/issue/1",
-                issueStatus = IssueStatus.Closed
+                issueStatus = IssueStatus.Closed,
             ),
             CheckResult.Success(
                 issueUrl = "http://fixture.url/issue/2",
-                issueStatus = IssueStatus.Open
-            )
+                issueStatus = IssueStatus.Open,
+            ),
         )
     }
 }

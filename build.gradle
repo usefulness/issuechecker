@@ -20,9 +20,17 @@ allprojects {
             }
         }
     }
+    repositories {
+        maven {
+            url("https://oss.sonatype.org/content/repositories/snapshots/")
+            mavenContent {
+                snapshotsOnly()
+            }
+        }
+    }
     tasks.withType(KotlinCompile).configureEach {
         kotlinOptions {
-            apiVersion = '1.4'
+            apiVersion = '1.5'
         }
     }
 }

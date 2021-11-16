@@ -8,7 +8,7 @@ import java.net.URL
 import java.util.concurrent.Executor
 
 class IssueChecker(
-    val config: Config
+    val config: Config,
 ) {
 
     data class Config(
