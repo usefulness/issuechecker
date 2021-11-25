@@ -11,8 +11,6 @@ tasks.named("test") {
     }
 }
 
-
-
 dependencies {
     def coroutinesVersion = "1.5.2"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"

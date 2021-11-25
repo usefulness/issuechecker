@@ -19,8 +19,8 @@ jobs:
       - name: set up Java
         uses: actions/setup-java@v2
         with:
-          distribution: 'adopt'
-          java-version: 15
+          distribution: 'temurin'
+          java-version: 17
 
       - name: Gradle Wrapper Validation
         uses: gradle/wrapper-validation-action@v1
@@ -57,4 +57,3 @@ jobs:
         with:
           name: jacoco-report
           path: "${{ github.workspace }}/**/build/reports/jacoco"
-
