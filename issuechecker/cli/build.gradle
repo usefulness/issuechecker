@@ -36,8 +36,8 @@ publishing {
 
 dependencies {
     implementation project(":issuechecker")
-    implementation "com.github.ajalt.clikt:clikt:3.1.0"
+    implementation 'com.github.ajalt.clikt:clikt:3.3.0'
 
     testImplementation "org.assertj:assertj-core:3.21.0"
-    testImplementation "org.junit.jupiter:junit-jupiter:5.8.1"
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.2'
 }
