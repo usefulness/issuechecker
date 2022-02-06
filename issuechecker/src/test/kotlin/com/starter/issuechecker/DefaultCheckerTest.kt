@@ -1,9 +1,9 @@
 package com.starter.issuechecker
 
 import com.starter.issuechecker.resolvers.StatusResolver
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.TestCoroutineDispatcher
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.test.runTest
 import org.assertj.core.api.Assertions.assertThat
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.BeforeEach
@@ -14,19 +14,18 @@ import java.net.URL
 internal class DefaultCheckerTest {
 
     private val statusResolver = FakeStatusResolver()
-    private val testDispatcher = TestCoroutineDispatcher()
     private lateinit var checker: DefaultChecker
 
     @BeforeEach
     internal fun setUp() {
         checker = DefaultChecker(
             supportedTrackers = setOf(statusResolver),
-            dispatcher = testDispatcher,
+            dispatcher = Dispatchers.Default,
         )
     }
 
     @Test
-    fun `does not warn on regular file`() = testDispatcher.runBlockingTest {
+    fun `does not warn on regular file`() = runTest {
         @Language("kotlin")
         val randomLinks =
             """
@@ -44,7 +43,7 @@ internal class DefaultCheckerTest {
     }
 
     @Test
-    fun `reports links in comments`() = testDispatcher.runBlockingTest {
+    fun `reports links in comments`() = runTest {
         statusResolver.responses["https://fixture.url/issue/1"] = IssueStatus.Closed
         statusResolver.responses["http://fixture.url/issue/2"] = IssueStatus.Open
         @Language("kotlin")
