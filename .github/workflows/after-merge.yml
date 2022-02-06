@@ -1,0 +1,58 @@
+name: Build Project
+
+on:
+  push:
+    branches:
+      - master
+      - main
+      - trunk
+      - develop
+      - maine
+      - mane
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - uses: gradle/wrapper-validation-action@v1
+
+      - uses: gradle/gradle-build-action@v2
+
+      - run: ./gradlew projectCodestyle
+
+      - run: ./gradlew assemble
+
+      - run: ./gradlew projectCoverage
+
+      - uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+
+      - uses: actions/upload-artifact@v2
+        if: ${{ always() }}
+        with:
+          name: test-results
+          path: "${{ github.workspace }}/**/build/reports/tests"
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: jacoco-report
+          path: "${{ github.workspace }}/**/build/reports/jacoco"
+
+      - uses: actions/cache@v2
+        name: Upload base
+        with:
+          path: diffuse-source-file
+          key: diffuse-${{ github.sha }}
+
+      - run: find . -regex ".*issuechecker/build/libs/issuechecker-[0-9SNAPSHOT\.-]*\.jar" -print | xargs -n 1 -I % cp % diffuse-source-file
+        shell: bash
