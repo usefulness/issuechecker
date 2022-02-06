@@ -23,6 +23,7 @@ allprojects {
     tasks.withType(KotlinCompile).configureEach {
         kotlinOptions {
             apiVersion = '1.5'
+            freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
         }
     }
 }

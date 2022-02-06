@@ -1,13 +1,16 @@
 package com.starter.issuechecker
 
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.starter.issuechecker.resolvers.github.GithubService
 import com.starter.issuechecker.resolvers.github.GithubStatusResolver
 import com.starter.issuechecker.resolvers.youtrack.YoutrackService
 import com.starter.issuechecker.resolvers.youtrack.YoutrackStatusResolver
 import kotlinx.coroutines.asCoroutineDispatcher
+import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.json.Json
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.Executor
 
 internal fun defaultChecker(
@@ -24,13 +27,16 @@ internal fun defaultChecker(
     )
 }
 
+@OptIn(ExperimentalSerializationApi::class)
+private val json by lazy { Json { ignoreUnknownKeys = true }.asConverterFactory("application/json".toMediaType()) }
+
 internal fun restApi(
     baseUrl: String,
     okHttpClient: OkHttpClient,
     executor: Executor,
 ) = Retrofit.Builder()
     .baseUrl(baseUrl)
-    .addConverterFactory(MoshiConverterFactory.create())
+    .addConverterFactory(json)
     .callbackExecutor(executor)
     .client(okHttpClient)
     .build()

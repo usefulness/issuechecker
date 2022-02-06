@@ -1,9 +1,9 @@
 package com.starter.issuechecker.resolvers.github
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
 import com.starter.issuechecker.IssueStatus
 import com.starter.issuechecker.resolvers.StatusResolver
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import retrofit2.http.GET
 import retrofit2.http.Path
 import java.net.URL
@@ -50,8 +50,8 @@ internal interface GithubService {
     ): GithubIssue
 }
 
-@JsonClass(generateAdapter = true)
+@Serializable
 internal data class GithubIssue(
-    @Json(name = "title") val title: String,
-    @Json(name = "closed_at") val closedAt: String?,
+    @SerialName(value = "title") val title: String,
+    @SerialName(value = "closed_at") val closedAt: String?,
 )
