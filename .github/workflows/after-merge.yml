@@ -37,13 +37,13 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         if: ${{ always() }}
         with:
           name: test-results
           path: "${{ github.workspace }}/**/build/reports/tests"
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: jacoco-report
           path: "${{ github.workspace }}/**/build/reports/jacoco"
