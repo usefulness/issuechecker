@@ -12,7 +12,7 @@ tasks.named("test") {
 }
 
 dependencies {
-    def coroutinesVersion = "1.6.0"
+    def coroutinesVersion = "1.6.1"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
     def okHttpVersion = "4.9.3"
     api "com.squareup.okhttp3:okhttp:$okHttpVersion"
