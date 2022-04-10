@@ -55,7 +55,7 @@ jobs:
         shell: bash
 
       - id: diffuse
-        uses: usefulness/diffuse-action@v0.7.0
+        uses: usefulness/diffuse-action@v0.8.0
         with:
           old-file-path: diffuse-source-file
           new-file-path: pull-request-artifact.jar
