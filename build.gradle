@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id 'com.starter.config' version '0.44.0'
-    id 'com.starter.versioning' version '0.43.0'
+    id 'com.starter.versioning' version '0.44.0'
 }
 
 commonConfig {
