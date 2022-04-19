@@ -1,7 +1,7 @@
 plugins {
     id 'com.starter.library.kotlin' version '0.44.0'
     id 'com.starter.publishing'
-    id 'org.jetbrains.kotlin.plugin.serialization' version '1.6.20'
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.6.21'
 }
 
 tasks.named("test") {
