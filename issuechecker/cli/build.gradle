@@ -38,6 +38,6 @@ dependencies {
     implementation project(":issuechecker")
     implementation 'com.github.ajalt.clikt:clikt:3.4.2'
 
-    testImplementation "org.assertj:assertj-core:3.22.0"
+    testImplementation "org.assertj:assertj-core:3.23.0"
     testImplementation 'org.junit.jupiter:junit-jupiter:5.8.2'
 }
