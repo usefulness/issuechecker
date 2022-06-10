@@ -11,7 +11,7 @@ commonConfig {
 
 allprojects {
     pluginManager.withPlugin("kotlin") { plugin ->
-        def kotlinVersion = plugins.getPlugin("kotlin").kotlinPluginVersion
+        def kotlinVersion = org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapperKt.getKotlinPluginVersion(project)
         configurations.configureEach {
             resolutionStrategy.eachDependency {
                 if (requested.group == 'org.jetbrains.kotlin' && requested.name.startsWith("kotlin")) {
@@ -23,7 +23,6 @@ allprojects {
     tasks.withType(KotlinCompile).configureEach {
         kotlinOptions {
             apiVersion = '1.5'
-            freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
         }
     }
 }
