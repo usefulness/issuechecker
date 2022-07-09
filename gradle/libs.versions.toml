@@ -2,7 +2,7 @@
 gradle-starter = "0.47.0"
 gradle-kotlinter = "3.11.1"
 gradle-gradledoctor = "0.8.1"
-mavencentral-kotlin = "1.7.0"
+mavencentral-kotlin = "1.7.10"
 mavencentral-junit = "5.8.2"
 mavencentral-assertj = "3.23.1"
 mavencentral-coroutines = "1.6.3"
