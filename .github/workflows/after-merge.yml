@@ -9,6 +9,8 @@ on:
       - develop
       - maine
       - mane
+  schedule:
+    - cron: '0 3 * * 1,4'
 
 jobs:
   build:
