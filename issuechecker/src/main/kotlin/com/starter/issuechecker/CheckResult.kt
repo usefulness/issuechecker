@@ -15,5 +15,5 @@ sealed class CheckResult {
 
 enum class IssueStatus {
     Open,
-    Closed
+    Closed,
 }
