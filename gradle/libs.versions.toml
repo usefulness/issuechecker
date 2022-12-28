@@ -11,7 +11,7 @@ mavencentral-okio = "3.2.0"
 mavencentral-retrofit = "2.9.0"
 mavencentral-kotlinx-serialization = "1.4.1"
 mavencentral-retrofit-serialization-converter = "0.8.0"
-mavencentral-clikt = "3.5.0"
+mavencentral-clikt = "3.5.1"
 
 [libraries]
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "mavencentral-coroutines" }
