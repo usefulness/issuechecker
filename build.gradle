@@ -21,6 +21,9 @@ allprojects {
                 }
             }
         }
+        kotlin {
+            jvmToolchain(17)
+        }
     }
     tasks.withType(KotlinCompile).configureEach {
         kotlinOptions {
