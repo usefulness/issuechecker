@@ -53,6 +53,7 @@ class IssueCheckerCli : CliktCommand() {
                     .filter { it.isFile }
                     .filter { pathMatcher.matches(it.toPath()) }
             }
+
             source.size == 1 -> {
                 val argument = source.single()
                 runCatching {
@@ -66,6 +67,7 @@ class IssueCheckerCli : CliktCommand() {
                     }
                     .getOrThrow()
             }
+
             else -> {
                 source.asSequence().mapNotNull { path -> File(path.trim()).takeIf { it.isFile } }
             }
@@ -106,6 +108,7 @@ class IssueCheckerCli : CliktCommand() {
                         IssueStatus.Closed -> "👉 ${result.issueUrl} (Closed)"
                     }.let { { println("-> $it") } }
                 }
+
                 is CheckResult.Error -> {
                     if (debug || stacktrace) {
                         result.throwable.printStackTrace()

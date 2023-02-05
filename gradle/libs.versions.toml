@@ -2,6 +2,7 @@
 gradle-starter = "0.58.0"
 gradle-kotlinter = "3.13.0"
 gradle-gradledoctor = "0.8.1"
+gradle-johnrengelman-shadow = "7.1.2"
 mavencentral-kotlin = "1.8.10"
 mavencentral-junit = "5.9.2"
 mavencentral-assertj = "3.24.2"
@@ -12,7 +13,7 @@ mavencentral-retrofit = "2.9.0"
 mavencentral-kotlinx-serialization = "1.4.1"
 mavencentral-retrofit-serialization-converter = "0.8.0"
 mavencentral-clikt = "3.5.1"
-gradle-johnrengelman-shadow = "7.1.2"
+google-r8 = "4.0.48"
 
 [libraries]
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "mavencentral-coroutines" }
@@ -26,6 +27,7 @@ retrofit-converter-kotlinxserialization = { module = "com.jakewharton.retrofit:r
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "mavencentral-junit" }
 assertj-core = { module = "org.assertj:assertj-core", version.ref = "mavencentral-assertj" }
 clikt-core = { module = "com.github.ajalt.clikt:clikt", version.ref = "mavencentral-clikt" }
+r8-core = { module = "com.android.tools:r8", version.ref = "google-r8" }
 
 [plugins]
 osacky-gradledoctor = { id = "com.osacky.doctor", version.ref = "gradle-gradledoctor" }
