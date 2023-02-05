@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.starter.library.kotlin)
     id "application"
     id "maven-publish"
-    id "com.github.johnrengelman.shadow" version "7.1.2"
+    alias(libs.plugins.johnrengelman.shadow)
 }
 
 application {
