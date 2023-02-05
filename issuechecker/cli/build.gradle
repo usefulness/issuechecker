@@ -16,10 +16,69 @@ tasks.named("test") {
     }
 }
 
+configurations {
+    r8
+}
+
+dependencies {
+    implementation(project(":issuechecker"))
+    implementation(libs.clikt.core)
+
+    r8(libs.r8.core)
+
+    testImplementation(libs.assertj.core)
+    testImplementation(libs.junit.jupiter)
+}
+
+tasks.named("shadowJar") {
+    exclude '**/*.kotlin_metadata'
+    exclude '**/*.kotlin_module'
+    exclude '**/*.kotlin_builtins'
+    exclude '**/module-info.class'
+    exclude 'META-INF/maven/**'
+    exclude 'META-INF/proguard/**'
+    exclude 'META-INF/*.version'
+    exclude '**/*.proto'
+    exclude '**/*.dex'
+    exclude 'LICENSE'
+    exclude 'NOTICE'
+    exclude 'r8-version.properties'
+    exclude 'migrateToAndroidx/*'
+    exclude 'DebugProbesKt.bin'
+}
+
+def r8File = new File("$buildDir/libs/$archivesBaseName-$version-r8.jar")
+def rulesFile = project.file("rules.pro")
+def r8JarProvider = tasks.register('r8Jar', JavaExec) { task ->
+    task.javaLauncher.set(javaToolchains.launcherFor { spec ->
+        spec.languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_11.majorVersion))
+    })
+    def fatJar = shadowJar
+    def fatJarFile = fatJar.archiveFile
+    task.dependsOn(fatJar)
+    task.inputs.file(fatJarFile)
+    task.inputs.file(rulesFile)
+    task.outputs.file(r8File)
+
+    task.classpath(configurations.r8)
+    task.mainClass.set('com.android.tools.r8.R8')
+    task.args = [
+            '--release',
+            '--classfile',
+            '--output', r8File.toString(),
+            '--pg-conf', rulesFile.path,
+            '--lib', System.getProperty('java.home').toString(),
+            fatJarFile.get().toString(),
+    ]
+}
+artifacts {
+    archives file: r8File, name: 'binary', type: 'jar', builtBy: r8JarProvider, classifier: 'diffuse'
+}
+
 publishing {
     publications {
         shadow(MavenPublication) { publication ->
-            project.shadow.component(publication)
+            artifact r8File
         }
     }
     repositories {
@@ -32,12 +91,4 @@ publishing {
             }
         }
     }
-}
-
-dependencies {
-    implementation(project(":issuechecker"))
-    implementation(libs.clikt.core)
-
-    testImplementation(libs.assertj.core)
-    testImplementation(libs.junit.jupiter)
 }
