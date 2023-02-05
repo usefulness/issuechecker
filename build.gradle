@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.starter.config)
     alias(libs.plugins.starter.versioning)
     alias(libs.plugins.osacky.gradledoctor)
+    alias(libs.plugins.starter.library.kotlin) apply(false)
 }
 
 commonConfig {
@@ -27,7 +28,7 @@ allprojects {
     }
     tasks.withType(KotlinCompile).configureEach {
         kotlinOptions {
-            apiVersion = '1.5'
+            apiVersion = "1.5"
         }
     }
 }
