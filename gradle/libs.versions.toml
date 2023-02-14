@@ -1,6 +1,5 @@
 [versions]
 gradle-starter = "0.58.0"
-gradle-kotlinter = "3.13.0"
 gradle-gradledoctor = "0.8.1"
 gradle-johnrengelman-shadow = "7.1.2"
 mavencentral-kotlin = "1.8.10"
@@ -31,7 +30,6 @@ r8-core = { module = "com.android.tools:r8", version.ref = "google-r8" }
 
 [plugins]
 osacky-gradledoctor = { id = "com.osacky.doctor", version.ref = "gradle-gradledoctor" }
-jmailen-kotlinter = { id = "org.jmailen.kotlinter", version.ref = "gradle-kotlinter" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "mavencentral-kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "mavencentral-kotlin" }
 starter-config = { id = "com.starter.config", version.ref = "gradle-starter" }

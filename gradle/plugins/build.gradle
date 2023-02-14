@@ -1,15 +1,20 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinCompile
+
 plugins {
     id 'java-gradle-plugin'
-    alias(libs.plugins.kotlin.jvm)
-    alias(libs.plugins.jmailen.kotlinter)
+    alias(libs.plugins.starter.library.kotlin)
 }
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-gradle-plugin"
 }
 
+def targetJavaVersion = JavaVersion.VERSION_1_8
 tasks.withType(JavaCompile).configureEach {
-    options.release.set(8)
+    options.release.set(targetJavaVersion.majorVersion.toInteger())
+}
+tasks.withType(KotlinCompile).configureEach {
+    kotlinOptions.jvmTarget = targetJavaVersion
 }
 
 gradlePlugin {
