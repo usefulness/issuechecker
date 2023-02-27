@@ -1,7 +1,7 @@
 [versions]
 gradle-starter = "0.58.0"
 gradle-gradledoctor = "0.8.1"
-gradle-johnrengelman-shadow = "8.0.0"
+gradle-johnrengelman-shadow = "8.1.0"
 mavencentral-kotlin = "1.8.10"
 mavencentral-junit = "5.9.2"
 mavencentral-assertj = "3.24.2"
