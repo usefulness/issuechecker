@@ -12,7 +12,7 @@ mavencentral-retrofit = "2.9.0"
 mavencentral-kotlinx-serialization = "1.5.0"
 mavencentral-retrofit-serialization-converter = "0.8.0"
 mavencentral-clikt = "3.5.2"
-google-r8 = "8.0.34"
+google-r8 = "8.0.40"
 
 [libraries]
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "mavencentral-coroutines" }
