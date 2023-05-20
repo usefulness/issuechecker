@@ -26,8 +26,7 @@ internal class GithubStatusResolver(
         }
     }
 
-    override fun handles(url: URL): Boolean =
-        handledPattern.containsMatchIn(url.toString())
+    override fun handles(url: URL): Boolean = handledPattern.containsMatchIn(url.toString())
 
     companion object {
 
@@ -43,11 +42,7 @@ internal class GithubStatusResolver(
 
 internal interface GithubService {
     @GET("repos/{owner}/{repo}/issues/{issueId}")
-    suspend fun getIssue(
-        @Path("owner") owner: String,
-        @Path("repo") repo: String,
-        @Path("issueId") issueId: String,
-    ): GithubIssue
+    suspend fun getIssue(@Path("owner") owner: String, @Path("repo") repo: String, @Path("issueId") issueId: String): GithubIssue
 }
 
 @Serializable

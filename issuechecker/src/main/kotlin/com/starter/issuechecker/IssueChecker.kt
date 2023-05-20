@@ -19,11 +19,9 @@ class IssueChecker(
 
     private val checker = defaultChecker(config)
 
-    suspend fun findAllLinks(text: String): Collection<List<URL>> =
-        checker.getLinks(text = text).filterKeys { it != null }.values
+    suspend fun findAllLinks(text: String): Collection<List<URL>> = checker.getLinks(text = text).filterKeys { it != null }.values
 
-    suspend fun report(text: String): Collection<CheckResult> =
-        checker.report(text = text)
+    suspend fun report(text: String): Collection<CheckResult> = checker.report(text = text)
 }
 
 fun IssueChecker.reportBlocking(text: String) = runBlocking { report(text) }

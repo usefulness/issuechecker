@@ -12,9 +12,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import java.util.concurrent.Executor
 
-internal fun defaultChecker(
-    config: IssueChecker.Config,
-): DefaultChecker {
+internal fun defaultChecker(config: IssueChecker.Config): DefaultChecker {
     val supportedTrackers = setOf(
         createGithub(config),
         createYoutrack(config),
@@ -28,20 +26,14 @@ internal fun defaultChecker(
 
 private val json by lazy { Json { ignoreUnknownKeys = true }.asConverterFactory("application/json".toMediaType()) }
 
-internal fun restApi(
-    baseUrl: String,
-    okHttpClient: OkHttpClient,
-    executor: Executor,
-) = Retrofit.Builder()
+internal fun restApi(baseUrl: String, okHttpClient: OkHttpClient, executor: Executor) = Retrofit.Builder()
     .baseUrl(baseUrl)
     .addConverterFactory(json)
     .callbackExecutor(executor)
     .client(okHttpClient)
     .build()
 
-private fun createYoutrack(
-    config: IssueChecker.Config,
-) = YoutrackStatusResolver(
+private fun createYoutrack(config: IssueChecker.Config) = YoutrackStatusResolver(
     service = restApi(
         baseUrl = "https://youtrack.jetbrains.com/",
         okHttpClient = config.okHttpClient,
@@ -49,9 +41,7 @@ private fun createYoutrack(
     ).create(YoutrackService::class.java),
 )
 
-private fun createGithub(
-    config: IssueChecker.Config,
-) = GithubStatusResolver(
+private fun createGithub(config: IssueChecker.Config) = GithubStatusResolver(
     service = restApi(
         baseUrl = "https://api.github.com/",
         okHttpClient = config.okHttpClient.githubOkHttpClient { config.githubToken },
@@ -59,15 +49,14 @@ private fun createGithub(
     ).create(GithubService::class.java),
 )
 
-private fun OkHttpClient.githubOkHttpClient(auth: () -> String?) =
-    newBuilder()
-        .addInterceptor { chain ->
-            val newRequest = auth()?.let { token ->
-                chain.request().newBuilder()
-                    .addHeader("Authorization", "token $token")
-                    .build()
-            } ?: chain.request()
+private fun OkHttpClient.githubOkHttpClient(auth: () -> String?) = newBuilder()
+    .addInterceptor { chain ->
+        val newRequest = auth()?.let { token ->
+            chain.request().newBuilder()
+                .addHeader("Authorization", "token $token")
+                .build()
+        } ?: chain.request()
 
-            chain.proceed(newRequest)
-        }
-        .build()
+        chain.proceed(newRequest)
+    }
+    .build()
