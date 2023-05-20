@@ -14,8 +14,7 @@ internal class YoutrackStatusResolver(
     private val service: YoutrackService,
 ) : StatusResolver {
 
-    override fun handles(url: URL): Boolean =
-        pattern.containsMatchIn(url.toString())
+    override fun handles(url: URL): Boolean = pattern.containsMatchIn(url.toString())
 
     override suspend fun resolve(url: URL) = withContext(Dispatchers.IO) {
         val issueId = pattern.find(url.toString())?.groups?.last()?.value
