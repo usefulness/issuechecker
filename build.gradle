@@ -10,6 +10,7 @@ plugins {
 
 commonConfig {
     javaFilesAllowed false
+    javaVersion JavaVersion.VERSION_1_8
 }
 
 allprojects {
@@ -23,7 +24,7 @@ allprojects {
             }
         }
         kotlin {
-            jvmToolchain(17)
+            jvmToolchain(19)
         }
     }
     tasks.withType(KotlinCompile).configureEach {
