@@ -14,11 +14,9 @@ internal class DefaultChecker internal constructor(
 ) {
 
     suspend fun getLinks(text: String) = withContext(dispatcher) {
-        val result = linkPattern.findAll(text)
-        result.mapNotNull { matcher -> URL(matcher.value) }
-            .groupBy { url ->
-                supportedTrackers.firstOrNull { it.handles(url) }
-            }
+        linkPattern.findAll(text)
+            .map { matcher -> URL(matcher.value) }
+            .groupBy { url -> supportedTrackers.firstOrNull { it.handles(url) } }
     }
 
     suspend fun report(text: String): Set<CheckResult> = coroutineScope {
