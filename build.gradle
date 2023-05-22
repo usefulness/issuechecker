@@ -24,7 +24,12 @@ allprojects {
             }
         }
         kotlin {
-            jvmToolchain(19)
+            jvmToolchain(20)
+        }
+    }
+    pluginManager.withPlugin("jacoco") {
+        jacoco {
+            toolVersion = "0.8.10"
         }
     }
     tasks.withType(KotlinCompile).configureEach {
