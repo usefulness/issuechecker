@@ -11,7 +11,7 @@ mavencentral-okio = "3.3.0"
 mavencentral-retrofit = "2.9.0"
 mavencentral-kotlinx-serialization = "1.5.1"
 mavencentral-retrofit-serialization-converter = "1.0.0"
-mavencentral-clikt = "3.5.3"
+mavencentral-clikt = "3.5.4"
 google-r8 = "8.0.40"
 
 [libraries]
