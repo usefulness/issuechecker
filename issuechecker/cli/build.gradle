@@ -78,7 +78,7 @@ artifacts {
 publishing {
     publications {
         shadow(MavenPublication) { publication ->
-            artifact r8File
+            artifact r8JarProvider
         }
     }
     repositories {
