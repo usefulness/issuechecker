@@ -4,14 +4,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.asExecutor
 import kotlinx.coroutines.runBlocking
 import okhttp3.OkHttpClient
-import java.net.URL
+import java.net.URI
 import java.util.concurrent.Executor
 
-class IssueChecker(
-    val config: Config,
+public class IssueChecker(
+    config: Config,
 ) {
 
-    data class Config(
+    public data class Config(
         val githubToken: String? = null,
         val okHttpClient: OkHttpClient = OkHttpClient(),
         val executor: Executor = Dispatchers.IO.asExecutor(),
@@ -19,10 +19,10 @@ class IssueChecker(
 
     private val checker = defaultChecker(config)
 
-    suspend fun findAllLinks(text: String): Collection<List<URL>> = checker.getLinks(text = text).filterKeys { it != null }.values
+    public suspend fun findAllLinks(text: String): Collection<List<URI>> = checker.getLinks(text = text).filterKeys { it != null }.values
 
-    suspend fun report(text: String): Collection<CheckResult> = checker.report(text = text)
+    public suspend fun report(text: String): Collection<CheckResult> = checker.report(text = text)
 }
 
-fun IssueChecker.reportBlocking(text: String) = runBlocking { report(text) }
-fun IssueChecker.findAllLinksBlocking(text: String) = runBlocking { findAllLinks(text) }
+public fun IssueChecker.reportBlocking(text: String): Collection<CheckResult> = runBlocking { report(text) }
+public fun IssueChecker.findAllLinksBlocking(text: String): Collection<List<URI>> = runBlocking { findAllLinks(text) }

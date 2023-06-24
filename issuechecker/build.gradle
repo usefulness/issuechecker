@@ -11,6 +11,10 @@ tasks.named("test") {
     }
 }
 
+kotlin {
+    explicitApi()
+}
+
 dependencies {
     implementation(libs.coroutines.core)
     api(libs.okhttp.core)

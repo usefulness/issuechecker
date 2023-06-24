@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.starter.versioning)
     alias(libs.plugins.osacky.gradledoctor)
     alias(libs.plugins.starter.library.kotlin) apply(false)
+    alias(libs.plugins.kotlinx.binarycompatibility)
 }
 
 commonConfig {

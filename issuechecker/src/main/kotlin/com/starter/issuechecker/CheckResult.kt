@@ -1,19 +1,19 @@
 package com.starter.issuechecker
 
-sealed class CheckResult {
+public sealed interface CheckResult {
 
-    data class Success(
+    public data class Success(
         val issueUrl: String,
         val issueStatus: IssueStatus,
-    ) : CheckResult()
+    ) : CheckResult
 
-    data class Error(
+    public data class Error(
         val issueUrl: String,
         val throwable: Throwable,
-    ) : CheckResult()
+    ) : CheckResult
 }
 
-enum class IssueStatus {
+public enum class IssueStatus {
     Open,
     Closed,
 }

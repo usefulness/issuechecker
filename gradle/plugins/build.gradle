@@ -6,7 +6,12 @@ plugins {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-gradle-plugin"
+    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin")
+    implementation(libs.jetbrains.dokka)
+}
+
+kotlin {
+    jvmToolchain(20)
 }
 
 def targetJavaVersion = JavaVersion.VERSION_1_8

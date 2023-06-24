@@ -1,0 +1,9 @@
+public final class com/project/starter/issuechecker/cli/IssueCheckerCli : com/github/ajalt/clikt/core/CliktCommand {
+	public fun <init> ()V
+	public fun run ()V
+}
+
+public final class com/project/starter/issuechecker/cli/Main {
+	public static final fun main ([Ljava/lang/String;)V
+}
+
