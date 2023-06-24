@@ -4,7 +4,9 @@ import org.gradle.api.plugins.ExtensionContainer
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
+import org.gradle.jvm.tasks.Jar
 import org.gradle.plugins.signing.SigningExtension
+import org.jetbrains.dokka.gradle.DokkaTask
 
 class PublishingPlugin : Plugin<Project> {
 
@@ -18,6 +20,18 @@ class PublishingPlugin : Plugin<Project> {
             withSourcesJar()
             withJavadocJar()
         }
+
+        pluginManager.withPlugin("org.jetbrains.kotlin.jvm") {
+            pluginManager.apply("org.jetbrains.dokka")
+
+            tasks.withType(DokkaTask::class.java).configureEach { dokkaTask ->
+                dokkaTask.notCompatibleWithConfigurationCache("https://github.com/Kotlin/dokka/issues/1217")
+            }
+            tasks.named("javadocJar", Jar::class.java) { javadocJar ->
+                javadocJar.from(tasks.named("dokkaJavadoc"))
+            }
+        }
+
         extensions.configure<PublishingExtension> {
             with(repositories) {
                 maven { maven ->
@@ -52,7 +66,7 @@ class PublishingPlugin : Plugin<Project> {
                     publication.from(components.getByName("java"))
                     publication.pom { pom ->
                         pom.name.set("${project.group}:${project.name}")
-                        pom.description.set("A tool that scans sources for all resolved lisks to public trackers")
+                        pom.description.set("A tool that scans sources for all resolved links to public trackers")
                         pom.url.set("https://github.com/usefulness/issuechecker")
                         pom.licenses { licenses ->
                             licenses.license { license ->
@@ -76,7 +90,6 @@ class PublishingPlugin : Plugin<Project> {
                 }
             }
         }
-
         pluginManager.withPlugin("signing") {
             with(extensions.extraProperties) {
                 set("signing.keyId", findConfig("SIGNING_KEY_ID"))

@@ -10,7 +10,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.SoftAssertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import java.net.URL
+import java.net.URI
 
 internal class YoutrackStatusResolverTest {
 
@@ -27,7 +27,7 @@ internal class YoutrackStatusResolverTest {
     internal fun `correctly interprets youtrack response`() = runBlockingTest {
         server.enqueue(MockResponse().setBody(readJson("youtrack.json")))
 
-        val result = resolver.resolve(URL("https://youtrack.jetbrains.com/issue/KT-34230"))
+        val result = resolver.resolve(URI.create("https://youtrack.jetbrains.com/issue/KT-34230"))
 
         assertThat(result).isEqualTo(IssueStatus.Open)
     }
@@ -42,7 +42,7 @@ internal class YoutrackStatusResolverTest {
         )
         SoftAssertions.assertSoftly {
             links.forEach { (url, expected) ->
-                val result = resolver.handles(URL(url))
+                val result = resolver.handles(URI.create(url))
 
                 it.assertThat(result).withFailMessage("$url should ${if (expected) "" else "not "}match").isEqualTo(expected)
             }

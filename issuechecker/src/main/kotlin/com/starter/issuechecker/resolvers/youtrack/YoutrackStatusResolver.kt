@@ -8,15 +8,15 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import retrofit2.http.GET
 import retrofit2.http.Path
-import java.net.URL
+import java.net.URI
 
 internal class YoutrackStatusResolver(
     private val service: YoutrackService,
 ) : StatusResolver {
 
-    override fun handles(url: URL): Boolean = pattern.containsMatchIn(url.toString())
+    override fun handles(url: URI): Boolean = pattern.containsMatchIn(url.toString())
 
-    override suspend fun resolve(url: URL) = withContext(Dispatchers.IO) {
+    override suspend fun resolve(url: URI): IssueStatus = withContext(Dispatchers.IO) {
         val issueId = pattern.find(url.toString())?.groups?.last()?.value
             ?: throw IllegalArgumentException("Couldn't parse $url")
         val response = service.getIssue(issueId = issueId)

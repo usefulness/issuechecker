@@ -1,5 +1,5 @@
 [versions]
-gradle-starter = "0.60.1"
+gradle-starter = "0.61.1"
 gradle-gradledoctor = "0.8.1"
 gradle-johnrengelman-shadow = "8.1.1"
 mavencentral-kotlin = "1.8.22"
@@ -13,6 +13,8 @@ mavencentral-kotlinx-serialization = "1.5.1"
 mavencentral-retrofit-serialization-converter = "1.0.0"
 mavencentral-clikt = "3.5.4"
 google-r8 = "8.0.40"
+maven-binarycompatiblity = "0.13.2"
+maven-dokka = "1.8.20"
 
 [libraries]
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "mavencentral-coroutines" }
@@ -27,6 +29,7 @@ junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "mav
 assertj-core = { module = "org.assertj:assertj-core", version.ref = "mavencentral-assertj" }
 clikt-core = { module = "com.github.ajalt.clikt:clikt", version.ref = "mavencentral-clikt" }
 r8-core = { module = "com.android.tools:r8", version.ref = "google-r8" }
+jetbrains-dokka = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "maven-dokka" }
 
 [plugins]
 osacky-gradledoctor = { id = "com.osacky.doctor", version.ref = "gradle-gradledoctor" }
@@ -36,3 +39,4 @@ starter-config = { id = "com.starter.config", version.ref = "gradle-starter" }
 starter-library-kotlin = { id = "com.starter.library.kotlin", version.ref = "gradle-starter" }
 starter-versioning = { id = "com.starter.versioning", version.ref = "gradle-starter" }
 johnrengelman-shadow = { id = "com.github.johnrengelman.shadow", version.ref = "gradle-johnrengelman-shadow" }
+kotlinx-binarycompatibility = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "maven-binarycompatiblity" }

@@ -6,13 +6,13 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import retrofit2.http.GET
 import retrofit2.http.Path
-import java.net.URL
+import java.net.URI
 
 internal class GithubStatusResolver(
     private val service: GithubService,
 ) : StatusResolver {
 
-    override suspend fun resolve(url: URL): IssueStatus {
+    override suspend fun resolve(url: URI): IssueStatus {
         val result = handledPattern.find(url.toString())?.groups ?: throw IllegalArgumentException("Couldn't parse $url")
         val owner = result[OWNER]?.value ?: throw IllegalArgumentException("Couldn't get owner from $url")
         val repo = result[REPO]?.value ?: throw IllegalArgumentException("Couldn't get repo from $url")
@@ -26,7 +26,7 @@ internal class GithubStatusResolver(
         }
     }
 
-    override fun handles(url: URL): Boolean = handledPattern.containsMatchIn(url.toString())
+    override fun handles(url: URI): Boolean = handledPattern.containsMatchIn(url.toString())
 
     companion object {
 

@@ -7,7 +7,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import java.net.URL
+import java.net.URI
 
 internal class DefaultCheckerTest {
 
@@ -75,7 +75,7 @@ internal class FakeStatusResolver : StatusResolver {
 
     val responses = mutableMapOf<String, IssueStatus>()
 
-    override suspend fun resolve(url: URL) = responses.getValue(url.toString())
+    override suspend fun resolve(url: URI) = responses.getValue(url.toString())
 
-    override fun handles(url: URL): Boolean = url.host == "fixture.url"
+    override fun handles(url: URI): Boolean = url.host == "fixture.url"
 }

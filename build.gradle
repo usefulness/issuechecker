@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.starter.versioning)
     alias(libs.plugins.osacky.gradledoctor)
     alias(libs.plugins.starter.library.kotlin) apply(false)
+    alias(libs.plugins.kotlinx.binarycompatibility)
 }
 
 commonConfig {
@@ -16,7 +17,7 @@ commonConfig {
 allprojects {
     pluginManager.withPlugin("kotlin") { plugin ->
         def kotlinVersion = KotlinPluginWrapperKt.getKotlinPluginVersion(project)
-        configurations.configureEach {
+        configurations.matching { it.name != "detekt" }.configureEach {
             resolutionStrategy.eachDependency {
                 if (requested.group == 'org.jetbrains.kotlin' && requested.name.startsWith("kotlin")) {
                     useVersion kotlinVersion
@@ -25,11 +26,6 @@ allprojects {
         }
         kotlin {
             jvmToolchain(20)
-        }
-    }
-    pluginManager.withPlugin("jacoco") {
-        jacoco {
-            toolVersion = "0.8.10"
         }
     }
     tasks.withType(KotlinCompile).configureEach {

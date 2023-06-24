@@ -6,7 +6,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.withContext
-import java.net.URL
+import java.net.URI
 
 internal class DefaultChecker internal constructor(
     private val supportedTrackers: Set<StatusResolver>,
@@ -15,7 +15,7 @@ internal class DefaultChecker internal constructor(
 
     suspend fun getLinks(text: String) = withContext(dispatcher) {
         linkPattern.findAll(text)
-            .map { matcher -> URL(matcher.value) }
+            .map { matcher -> URI.create(matcher.value) }
             .groupBy { url -> supportedTrackers.firstOrNull { it.handles(url) } }
     }
 
