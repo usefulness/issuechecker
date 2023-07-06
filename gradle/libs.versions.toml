@@ -2,7 +2,7 @@
 gradle-starter = "0.61.1"
 gradle-gradledoctor = "0.8.1"
 gradle-johnrengelman-shadow = "8.1.1"
-mavencentral-kotlin = "1.8.22"
+mavencentral-kotlin = "1.9.0"
 mavencentral-junit = "5.9.3"
 mavencentral-assertj = "3.24.2"
 mavencentral-coroutines = "1.7.2"
@@ -33,7 +33,6 @@ jetbrains-dokka = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.
 
 [plugins]
 osacky-gradledoctor = { id = "com.osacky.doctor", version.ref = "gradle-gradledoctor" }
-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "mavencentral-kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "mavencentral-kotlin" }
 starter-config = { id = "com.starter.config", version.ref = "gradle-starter" }
 starter-library-kotlin = { id = "com.starter.library.kotlin", version.ref = "gradle-starter" }
