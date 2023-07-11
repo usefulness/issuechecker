@@ -38,16 +38,24 @@ jobs:
           dependency-graph: generate-and-submit
 
       - run: ./gradlew projectCodestyle --scan
+        env:
+           GITHUB_DEPENDENCY_GRAPH_JOB_CORRELATOR: dependency-graph-codestyle
       
       - run: ./gradlew assemble --scan
         env:
            GITHUB_DEPENDENCY_GRAPH_JOB_CORRELATOR: dependency-graph-assemble
 
       - run: ./gradlew check --scan
+        env:
+           GITHUB_DEPENDENCY_GRAPH_JOB_CORRELATOR: dependency-graph-check
 
       - run: ./gradlew projectCoverage --scan
+        env:
+           GITHUB_DEPENDENCY_GRAPH_JOB_CORRELATOR: dependency-graph-coverage
 
       - run: ./gradlew publishToMavenLocal
+        env:
+           GITHUB_DEPENDENCY_GRAPH_JOB_CORRELATOR: dependency-graph-publish
 
       - run: git diff --exit-code
 
