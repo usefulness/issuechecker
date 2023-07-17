@@ -111,3 +111,7 @@
 # However, since in this case they will not be used, we can disable these warnings
 -dontwarn kotlinx.serialization.internal.ClassValueWrapper
 -dontwarn kotlinx.serialization.internal.ParametrizedClassValueWrapper
+
+# Clikt
+-keep class com.sun.jna.** { *; }
+-keep class * implements com.sun.jna.** { *; }
