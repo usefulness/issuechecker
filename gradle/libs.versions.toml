@@ -14,7 +14,7 @@ mavencentral-retrofit-serialization-converter = "1.0.0"
 mavencentral-clikt = "4.2.0"
 google-r8 = "8.1.56"
 maven-binarycompatiblity = "0.13.2"
-maven-dokka = "1.9.0"
+maven-dokka = "1.9.10"
 
 [libraries]
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "mavencentral-coroutines" }
