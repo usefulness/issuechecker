@@ -7,9 +7,7 @@ import okhttp3.OkHttpClient
 import java.net.URI
 import java.util.concurrent.Executor
 
-public class IssueChecker(
-    config: Config,
-) {
+public class IssueChecker(config: Config) {
 
     public data class Config(
         val githubToken: String? = null,

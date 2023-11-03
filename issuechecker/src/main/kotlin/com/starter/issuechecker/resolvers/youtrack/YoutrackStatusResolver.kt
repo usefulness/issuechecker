@@ -10,9 +10,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import java.net.URI
 
-internal class YoutrackStatusResolver(
-    private val service: YoutrackService,
-) : StatusResolver {
+internal class YoutrackStatusResolver(private val service: YoutrackService) : StatusResolver {
 
     override fun handles(url: URI): Boolean = pattern.containsMatchIn(url.toString())
 
