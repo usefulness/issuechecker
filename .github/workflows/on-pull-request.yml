@@ -91,7 +91,7 @@ jobs:
 
       - run: git diff --exit-code
 
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         name: Upload base
         if: github.event_name != 'pull_request'
         with:
@@ -102,7 +102,7 @@ jobs:
         if: github.event_name != 'pull_request'
         shell: bash
 
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         name: Download base
         if: github.event_name == 'pull_request'
         with:
