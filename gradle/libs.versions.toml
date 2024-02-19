@@ -12,7 +12,7 @@ mavencentral-retrofit = "2.9.0"
 mavencentral-kotlinx-serialization = "1.6.3"
 mavencentral-retrofit-serialization-converter = "1.0.0"
 mavencentral-clikt = "4.2.0"
-google-r8 = "8.2.42"
+google-r8 = "8.2.47"
 maven-binarycompatiblity = "0.14.0"
 maven-dokka = "1.9.10"
 
