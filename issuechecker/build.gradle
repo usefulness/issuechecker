@@ -23,8 +23,10 @@ dependencies {
     implementation(libs.retrofit.core)
     implementation(libs.retrofit.converter.kotlinxserialization)
 
+    testRuntimeOnly(libs.junit.platform.launcher)
+
     testImplementation(libs.coroutines.test)
     testImplementation(libs.okhttp.mockwebserver)
     testImplementation(libs.assertj.core)
-    testImplementation(libs.junit.jupiter)
+    testImplementation(libs.junit.jupiter.api)
 }

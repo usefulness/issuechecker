@@ -26,8 +26,10 @@ dependencies {
 
     r8(libs.r8.core)
 
+    testRuntimeOnly(libs.junit.platform.launcher)
+
     testImplementation(libs.assertj.core)
-    testImplementation(libs.junit.jupiter)
+    testImplementation(libs.junit.jupiter.api)
 }
 
 tasks.named("shadowJar") {
