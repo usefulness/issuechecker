@@ -25,7 +25,8 @@ okhttp-mockwebserver = { module = "com.squareup.okhttp3:mockwebserver", version.
 okio-core = { module = "com.squareup.okio:okio", version.ref = "mavencentral-okio" }
 retrofit-core = { module = "com.squareup.retrofit2:retrofit", version.ref = "mavencentral-retrofit" }
 retrofit-converter-kotlinxserialization = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "mavencentral-retrofit-serialization-converter" }
-junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "mavencentral-junit" }
+junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter", version.ref = "mavencentral-junit" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
 assertj-core = { module = "org.assertj:assertj-core", version.ref = "mavencentral-assertj" }
 clikt-core = { module = "com.github.ajalt.clikt:clikt", version.ref = "mavencentral-clikt" }
 r8-core = { module = "com.android.tools:r8", version.ref = "google-r8" }
