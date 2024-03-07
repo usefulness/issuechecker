@@ -115,7 +115,7 @@ jobs:
 
       - id: diffuse
         if: github.event_name == 'pull_request'
-        uses: usefulness/diffuse-action@v0.9.0
+        uses: usefulness/diffuse-action@v0.10.0
         with:
           old-file-path: diffuse-source-file
           new-file-path: pull-request-artifact.jar
