@@ -7,12 +7,19 @@
   public static void main(java.lang.String[]);
 }
 
-## OkHttp https://raw.githubusercontent.com/square/okhttp/master/okhttp/src/jvmMain/resources/META-INF/proguard/okhttp3.pro
+## Look like a Retrofit bug - these shouldn't be needed
+-dontwarn android.annotation.TargetApi
+-dontwarn android.os.Handler
+-dontwarn android.os.Looper
+
+
+## OkHttp
+
 # JSR 305 annotations are for embedding nullability information.
 -dontwarn javax.annotation.**
 
 # A resource is loaded with a relative path so the package of this class must be preserved.
--adaptresourcefilenames okhttp3/internal/publicsuffix/PublicSuffixDatabase.gz
+-keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
 
 # Animal Sniffer compileOnly dependency to ensure APIs are compatible with older versions of Java.
 -dontwarn org.codehaus.mojo.animal_sniffer.*
@@ -23,9 +30,6 @@
 -dontwarn org.bouncycastle.**
 -dontwarn org.openjsse.**
 
-
--dontwarn android.os.Handler
--dontwarn android.os.Looper
 ### Retrofit
 
 # Retrofit does reflection on generic parameters. InnerClasses is required to use Signature and
@@ -65,14 +69,17 @@
 -if interface * { @retrofit2.http.* <methods>; }
 -keep,allowobfuscation interface * extends <1>
 
-# Keep generic signature of Call, Response (R8 full mode strips signatures from non-kept items).
--keep,allowobfuscation,allowshrinking interface retrofit2.Call
--keep,allowobfuscation,allowshrinking class retrofit2.Response
-
 # With R8 full mode generic signatures are stripped for classes that are not
 # kept. Suspend functions are wrapped in continuations where the type argument
 # is used.
 -keep,allowobfuscation,allowshrinking class kotlin.coroutines.Continuation
+
+# R8 full mode strips generic signatures from return types if not kept.
+-if interface * { @retrofit2.http.* public *** *(...); }
+-keep,allowoptimization,allowshrinking,allowobfuscation class <3>
+
+# With R8 full mode generic signatures are stripped for classes that are not kept.
+-keep,allowobfuscation,allowshrinking class retrofit2.Response
 
 ## kotlinx.serialization
 # Keep `Companion` object fields of serializable classes.
@@ -109,9 +116,4 @@
 # Serialization core uses `java.lang.ClassValue` for caching inside these specified classes.
 # If there is no `java.lang.ClassValue` (for example, in Android), then R8/ProGuard will print a warning.
 # However, since in this case they will not be used, we can disable these warnings
--dontwarn kotlinx.serialization.internal.ClassValueWrapper
--dontwarn kotlinx.serialization.internal.ParametrizedClassValueWrapper
-
-# Clikt
--keep class com.sun.jna.** { *; }
--keep class * implements com.sun.jna.** { *; }
+-dontwarn kotlinx.serialization.internal.ClassValueReferences
