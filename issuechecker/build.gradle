@@ -20,6 +20,7 @@ dependencies {
     api(libs.okhttp.core)
     implementation(libs.okio.core)
     implementation(libs.kotlinx.serialization.json)
+    implementation(platform(libs.retrofit.bom))
     implementation(libs.retrofit.core)
     implementation(libs.retrofit.converter.kotlinxserialization)
 

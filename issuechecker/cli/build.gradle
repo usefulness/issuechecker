@@ -40,6 +40,9 @@ tasks.named("shadowJar") {
     exclude 'META-INF/maven/**'
     exclude 'META-INF/proguard/**'
     exclude 'META-INF/*.version'
+    exclude 'META-INF/LICENSE'
+    exclude 'META-INF/AL2.0'
+    exclude 'META-INF/LGPL2.1'
     exclude '**/*.proto'
     exclude '**/*.dex'
     exclude 'LICENSE'
@@ -49,11 +52,11 @@ tasks.named("shadowJar") {
     exclude 'DebugProbesKt.bin'
 }
 
-def r8File = new File("$buildDir/libs/${project.name}-$version-r8.jar")
+def r8File = layout.buildDirectory.file("libs/${base.archivesName.get()}-$version-r8.jar").get().asFile
 def rulesFile = project.file("rules.pro")
 def r8JarProvider = tasks.register('r8Jar', JavaExec) { task ->
     task.javaLauncher.set(javaToolchains.launcherFor { spec ->
-        spec.languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_11.majorVersion))
+        spec.languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_21.majorVersion))
     })
     def fatJar = shadowJar
     def fatJarFile = fatJar.archiveFile
@@ -67,10 +70,10 @@ def r8JarProvider = tasks.register('r8Jar', JavaExec) { task ->
     task.args = [
             '--release',
             '--classfile',
-            '--output', r8File.toString(),
+            '--output', r8File.path,
             '--pg-conf', rulesFile.path,
-            '--lib', providers.systemProperty('java.home').get(),
-            fatJarFile.get().toString(),
+            '--lib', System.getProperty('java.home').toString(),
+            fatJarFile.get().asFile.path,
     ]
 }
 artifacts {
