@@ -10,7 +10,8 @@ mavencentral-okhttp = "4.12.0"
 mavencentral-okio = "3.9.0"
 mavencentral-retrofit = "2.10.0"
 mavencentral-kotlinx-serialization = "1.6.3"
-mavencentral-clikt = "4.2.0"
+mavencentral-clikt = "4.3.0"
+mavencentral-mordant = "2.4.0"
 google-r8 = "8.2.47"
 maven-binarycompatiblity = "0.14.0"
 maven-dokka = "1.9.20"
@@ -29,6 +30,7 @@ junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter", version.ref = 
 junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
 assertj-core = { module = "org.assertj:assertj-core", version.ref = "mavencentral-assertj" }
 clikt-core = { module = "com.github.ajalt.clikt:clikt", version.ref = "mavencentral-clikt" }
+mordant-core = { module = "com.github.ajalt.mordant:mordant", version.ref = "mavencentral-mordant" }
 r8-core = { module = "com.android.tools:r8", version.ref = "google-r8" }
 jetbrains-dokka = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "maven-dokka" }
 

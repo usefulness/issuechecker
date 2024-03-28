@@ -23,6 +23,11 @@ configurations {
 dependencies {
     implementation(project(":issuechecker"))
     implementation(libs.clikt.core)
+    constraints {
+        implementation(libs.mordant.core) {
+            because 'only the latest version published proper R8 rules'
+        }
+    }
 
     r8(libs.r8.core)
 
@@ -37,8 +42,9 @@ tasks.named("shadowJar") {
     exclude '**/*.kotlin_module'
     exclude '**/*.kotlin_builtins'
     exclude '**/module-info.class'
-    exclude 'META-INF/maven/**'
     exclude 'META-INF/proguard/**'
+    exclude 'META-INF/com.android.tools/proguard/**'
+    exclude 'META-INF/com.android.tools/r8/**'
     exclude 'META-INF/*.version'
     exclude 'META-INF/LICENSE'
     exclude 'META-INF/AL2.0'
