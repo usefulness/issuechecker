@@ -29,8 +29,8 @@ allprojects {
     }
     tasks.withType(KotlinCompile).configureEach {
         compilerOptions {
-            apiVersion = KotlinVersion.KOTLIN_1_6
-            languageVersion = KotlinVersion.KOTLIN_1_6
+            apiVersion = KotlinVersion.KOTLIN_1_7
+            languageVersion = KotlinVersion.KOTLIN_1_7
         }
     }
 }
