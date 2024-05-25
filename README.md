@@ -1,8 +1,7 @@
 ## Issuechecker
 ___
 
-[![codecov](https://codecov.io/gh/usefulness/issuechecker/branch/master/graph/badge.svg)](https://codecov.io/gh/usefulness/issuechecker)
-&nbsp;[![Build Project](https://github.com/usefulness/issuechecker/actions/workflows/on-pull-request.yml/badge.svg?branch=master)](https://github.com/usefulness/issuechecker/actions/workflows/on-pull-request.yml)
+[![Build Project](https://github.com/usefulness/issuechecker/actions/workflows/on-pull-request.yml/badge.svg?branch=master)](https://github.com/usefulness/issuechecker/actions/workflows/on-pull-request.yml)
 &nbsp;[![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
 
 ![Maven Central](https://img.shields.io/maven-central/v/com.github.usefulness/issuechecker?style=plastic)
