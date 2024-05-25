@@ -37,19 +37,19 @@ jobs:
         with:
           dependency-graph: generate-and-submit
 
-      - run: ./gradlew projectCodestyle --scan
+      - run: ./gradlew projectCodestyle
         env:
            GITHUB_DEPENDENCY_GRAPH_JOB_CORRELATOR: dependency-graph-codestyle
       
-      - run: ./gradlew assemble --scan
+      - run: ./gradlew assemble
         env:
            GITHUB_DEPENDENCY_GRAPH_JOB_CORRELATOR: dependency-graph-assemble
 
-      - run: ./gradlew check --scan
+      - run: ./gradlew check
         env:
            GITHUB_DEPENDENCY_GRAPH_JOB_CORRELATOR: dependency-graph-check
 
-      - run: ./gradlew projectCoverage --scan
+      - run: ./gradlew projectCoverage
         env:
            GITHUB_DEPENDENCY_GRAPH_JOB_CORRELATOR: dependency-graph-coverage
 
