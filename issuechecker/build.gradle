@@ -1,10 +1,10 @@
 plugins {
-    alias(libs.plugins.starter.library.kotlin)
+    alias(libs.plugins.starter.library.multiplatform)
     alias(libs.plugins.kotlin.serialization)
     id 'com.starter.publishing'
 }
 
-tasks.named("test") {
+tasks.withType(Test).configureEach {
     useJUnitPlatform()
     testLogging {
         events "skipped", "failed"
@@ -12,22 +12,31 @@ tasks.named("test") {
 }
 
 kotlin {
+    jvm()
+
     explicitApi()
+    sourceSets {
+        commonMain.dependencies {
+            implementation(libs.coroutines.core)
+            implementation(libs.okio.core)
+            implementation(libs.kotlinx.serialization.json)
+            implementation(project.dependencies.platform(libs.retrofit.bom))
+        }
+        jvmMain.dependencies {
+            api(libs.okhttp.core)
+            implementation(libs.retrofit.core)
+            implementation(libs.retrofit.converter.kotlinxserialization)
+        }
+        commonTest.dependencies {
+            implementation(kotlin("test"))
+        }
+        jvmTest.dependencies {
+            runtimeOnly(libs.junit.platform.launcher)
+            implementation(libs.coroutines.test)
+            implementation(libs.okhttp.mockwebserver)
+            implementation(libs.assertj.core)
+            implementation(libs.junit.jupiter.api)
+        }
+    }
 }
 
-dependencies {
-    implementation(libs.coroutines.core)
-    api(libs.okhttp.core)
-    implementation(libs.okio.core)
-    implementation(libs.kotlinx.serialization.json)
-    implementation(platform(libs.retrofit.bom))
-    implementation(libs.retrofit.core)
-    implementation(libs.retrofit.converter.kotlinxserialization)
-
-    testRuntimeOnly(libs.junit.platform.launcher)
-
-    testImplementation(libs.coroutines.test)
-    testImplementation(libs.okhttp.mockwebserver)
-    testImplementation(libs.assertj.core)
-    testImplementation(libs.junit.jupiter.api)
-}

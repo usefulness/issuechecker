@@ -1,6 +1,11 @@
 plugins {
     id 'java-gradle-plugin'
     alias(libs.plugins.starter.library.kotlin)
+    alias(libs.plugins.kotlin.samwithreceiver)
+}
+
+samWithReceiver {
+    annotation("org.gradle.api.HasImplicitReceiver")
 }
 
 dependencies {

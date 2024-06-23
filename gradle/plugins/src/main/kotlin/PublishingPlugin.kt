@@ -1,13 +1,13 @@
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.plugins.ExtensionContainer
-import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
+import org.gradle.api.tasks.TaskProvider
 import org.gradle.jvm.tasks.Jar
 import org.gradle.plugins.signing.SigningExtension
 import org.jetbrains.dokka.gradle.DokkaTask
 
+@Suppress("unused")
 class PublishingPlugin : Plugin<Project> {
 
     override fun apply(target: Project) = with(target) {
@@ -16,76 +16,78 @@ class PublishingPlugin : Plugin<Project> {
             pluginManager.apply("signing")
         }
 
-        extensions.configure<JavaPluginExtension> {
-            withSourcesJar()
-            withJavadocJar()
-        }
-
-        pluginManager.withPlugin("org.jetbrains.kotlin.jvm") {
+        pluginManager.withPlugin("org.jetbrains.kotlin.multiplatform") {
             pluginManager.apply("org.jetbrains.dokka")
 
-            tasks.withType(DokkaTask::class.java).configureEach { dokkaTask ->
-                dokkaTask.notCompatibleWithConfigurationCache("https://github.com/Kotlin/dokka/issues/1217")
+            tasks.withType(DokkaTask::class.java).configureEach {
+                notCompatibleWithConfigurationCache("https://github.com/Kotlin/dokka/issues/1217")
             }
-            tasks.named("javadocJar", Jar::class.java) { javadocJar ->
-                javadocJar.from(tasks.named("dokkaJavadoc"))
+
+            tasks.register("javadocJar", Jar::class.java) {
+                archiveClassifier.set("javadoc")
+                from(tasks.named("dokkaJavadoc"))
             }
         }
 
-        extensions.configure<PublishingExtension> {
-            with(repositories) {
-                maven { maven ->
-                    maven.name = "github"
-                    maven.setUrl("https://maven.pkg.github.com/usefulness/issuechecker")
-                    with(maven.credentials) {
+        extensions.configure(PublishingExtension::class.java) {
+            repositories {
+                maven {
+                    name = "github"
+                    setUrl("https://maven.pkg.github.com/usefulness/issuechecker")
+                    credentials {
                         username = "usefulness"
                         password = findConfig("GITHUB_TOKEN")
                     }
                 }
-                maven { maven ->
-                    maven.name = "mavenCentral"
-                    maven.setUrl("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
-                    maven.mavenContent { it.releasesOnly() }
-                    with(maven.credentials) {
+                maven {
+                    name = "mavenCentral"
+                    setUrl("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
+                    mavenContent { releasesOnly() }
+                    credentials {
                         username = findConfig("OSSRH_USERNAME")
                         password = findConfig("OSSRH_PASSWORD")
                     }
                 }
-                maven { maven ->
-                    maven.name = "mavenCentralSnapshot"
-                    maven.setUrl("https://oss.sonatype.org/content/repositories/snapshots")
-                    maven.mavenContent { it.snapshotsOnly() }
-                    with(maven.credentials) {
+                maven {
+                    name = "mavenCentralSnapshot"
+                    setUrl("https://oss.sonatype.org/content/repositories/snapshots")
+                    mavenContent { snapshotsOnly() }
+                    credentials {
                         username = findConfig("OSSRH_USERNAME")
                         password = findConfig("OSSRH_PASSWORD")
                     }
                 }
             }
-            with(publications) {
-                register("mavenJava", MavenPublication::class.java) { publication ->
-                    publication.from(components.getByName("java"))
-                    publication.pom { pom ->
-                        pom.name.set("${project.group}:${project.name}")
-                        pom.description.set("A tool that scans sources for all resolved links to public trackers")
-                        pom.url.set("https://github.com/usefulness/issuechecker")
-                        pom.licenses { licenses ->
-                            licenses.license { license ->
-                                license.name.set("MIT")
-                                license.url.set("https://github.com/usefulness/issuechecker/blob/master/LICENSE")
-                            }
+            publications.named { it == "jvm" }.configureEach {
+                this as MavenPublication
+                artifact(tasks.named("javadocJar"))
+            }
+            publications.configureEach {
+                if (this !is MavenPublication) {
+                    return@configureEach
+                }
+
+                pom {
+                    name.set("${project.group}:${project.name}")
+                    description.set("A tool that scans sources for all resolved links to public trackers")
+                    url.set("https://github.com/usefulness/issuechecker")
+                    licenses {
+                        license {
+                            name.set("MIT")
+                            url.set("https://github.com/usefulness/issuechecker/blob/master/LICENSE")
                         }
-                        pom.developers { developers ->
-                            developers.developer { developer ->
-                                developer.id.set("mateuszkwiecinski")
-                                developer.name.set("Mateusz Kwiecinski")
-                                developer.email.set("36954793+mateuszkwiecinski@users.noreply.github.com")
-                            }
+                    }
+                    developers {
+                        developer {
+                            id.set("mateuszkwiecinski")
+                            name.set("Mateusz Kwiecinski")
+                            email.set("36954793+mateuszkwiecinski@users.noreply.github.com")
                         }
-                        pom.scm { scm ->
-                            scm.connection.set("scm:git:github.com/usefulness/issuechecker.git")
-                            scm.developerConnection.set("scm:git:ssh://github.com/usefulness/issuechecker.git")
-                            scm.url.set("https://github.com/usefulness/issuechecker/tree/master")
-                        }
+                    }
+                    scm {
+                        connection.set("scm:git:github.com/usefulness/issuechecker.git")
+                        developerConnection.set("scm:git:ssh://github.com/usefulness/issuechecker.git")
+                        url.set("https://github.com/usefulness/issuechecker/tree/master")
                     }
                 }
             }
@@ -97,14 +99,10 @@ class PublishingPlugin : Plugin<Project> {
                 set("signing.secretKeyRingFile", findConfig("SIGNING_SECRET_KEY_RING_FILE"))
             }
 
-            extensions.configure<SigningExtension>("signing") { signing ->
-                signing.sign(extensions.getByType(PublishingExtension::class.java).publications)
+            extensions.configure<SigningExtension>("signing") {
+                sign(extensions.getByType(PublishingExtension::class.java).publications)
             }
         }
-    }
-
-    private inline fun <reified T> ExtensionContainer.configure(crossinline receiver: T.() -> Unit) {
-        configure(T::class.java) { receiver(it) }
     }
 }
 
