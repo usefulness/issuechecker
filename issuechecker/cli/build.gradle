@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.starter.library.kotlin)
     id "application"
     id "maven-publish"
-    alias(libs.plugins.johnrengelman.shadow)
+    alias(libs.plugins.gradleup.shadow)
 }
 
 application {
