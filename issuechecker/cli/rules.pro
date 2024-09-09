@@ -12,7 +12,6 @@
 -dontwarn android.os.Handler
 -dontwarn android.os.Looper
 
-
 ### Retrofit
 
 # Retrofit does reflection on generic parameters. InnerClasses is required to use Signature and
@@ -67,11 +66,12 @@
 ### Mordant
 # Keep rules for those who are using ProGuard.
 
+-dontwarn org.graalvm.**
+-dontwarn com.oracle.svm.core.annotate.**
 -keep class com.sun.jna.** { *; }
 -keep class * implements com.sun.jna.** { *; }
 -keepattributes RuntimeVisibleAnnotations,RuntimeVisibleParameterAnnotations,RuntimeVisibleTypeAnnotations,AnnotationDefault
--dontwarn org.graalvm.**
--dontwarn com.oracle.svm.core.annotate.Delete
+-dontwarn com.github.ajalt.mordant.markdown.Markdown
 
 ### Okhttp
 # JSR 305 annotations are for embedding nullability information.
