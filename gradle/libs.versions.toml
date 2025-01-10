@@ -11,7 +11,7 @@ mavencentral-retrofit = "2.11.0"
 mavencentral-kotlinx-serialization = "1.8.0"
 mavencentral-clikt = "5.0.2"
 mavencentral-mordant = "3.0.1"
-google-r8 = "8.5.35"
+google-r8 = "8.7.18"
 maven-binarycompatiblity = "0.17.0"
 maven-dokka = "2.0.0"
 
