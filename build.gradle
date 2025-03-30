@@ -1,5 +1,5 @@
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
 plugins {
     alias(libs.plugins.starter.config)
@@ -23,13 +23,14 @@ allprojects {
             }
         }
         kotlin {
-            jvmToolchain(21)
+            jvmToolchain(23)
         }
-    }
-    tasks.withType(KotlinCompile).configureEach {
-        compilerOptions {
-            apiVersion = KotlinVersion.KOTLIN_1_7
-            languageVersion = KotlinVersion.KOTLIN_1_7
+
+        tasks.withType(KotlinJvmCompile).configureEach {
+            compilerOptions {
+                apiVersion = KotlinVersion.KOTLIN_1_8
+                languageVersion = KotlinVersion.KOTLIN_1_8
+            }
         }
     }
 }
