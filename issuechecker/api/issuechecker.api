@@ -58,6 +58,7 @@ public final class com/starter/issuechecker/IssueCheckerKt {
 public final class com/starter/issuechecker/IssueStatus : java/lang/Enum {
 	public static final field Closed Lcom/starter/issuechecker/IssueStatus;
 	public static final field Open Lcom/starter/issuechecker/IssueStatus;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lcom/starter/issuechecker/IssueStatus;
 	public static fun values ()[Lcom/starter/issuechecker/IssueStatus;
 }
