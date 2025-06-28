@@ -68,6 +68,13 @@ jobs:
 
       - run: git diff --exit-code
 
+      - run: |
+          find . -regex ".*issuechecker/cli/build/libs/cli-[0-9SNAPSHOT\.-]*-r8\.jar" -print | xargs -n 1 -I % cp % minified.jar
+          java -jar minified.jar --help
+          rm minified.jar
+        name: "Smoke test minified jar"
+        if: github.event_name == 'pull_request'
+
       - uses: actions/cache@v4
         name: Upload base
         if: github.event_name != 'pull_request'
