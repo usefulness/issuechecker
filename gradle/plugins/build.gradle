@@ -10,11 +10,13 @@ samWithReceiver {
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin")
+
+    implementation(libs.vanniktech.maven.publish)
     implementation(libs.jetbrains.dokka)
 }
 
 kotlin {
-    jvmToolchain(23)
+    jvmToolchain(24)
 }
 
 gradlePlugin {
