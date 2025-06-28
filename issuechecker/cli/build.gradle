@@ -17,7 +17,7 @@ tasks.named("test") {
 }
 
 configurations {
-    r8
+    register("r8")
 }
 
 dependencies {
@@ -94,8 +94,8 @@ publishing {
     }
     repositories {
         maven {
-            name "github"
-            url "https://maven.pkg.github.com/usefulness/issuechecker"
+            name = "github"
+            url = "https://maven.pkg.github.com/usefulness/issuechecker"
             credentials {
                 username = "usefulness"
                 password = findProperty("GITHUB_TOKEN")?.toString() ?: System.getenv("GITHUB_TOKEN") ?: ""

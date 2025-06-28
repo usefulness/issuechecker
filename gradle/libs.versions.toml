@@ -1,7 +1,7 @@
 [versions]
-gradle-starter = "0.85.0"
+gradle-starter = "0.86.0"
 gradle-gradleup-shadow = "8.3.7"
-mavencentral-kotlin = "2.1.21"
+mavencentral-kotlin = "2.2.0"
 mavencentral-junit = "5.13.2"
 mavencentral-assertj = "3.27.3"
 mavencentral-coroutines = "1.10.2"
@@ -14,6 +14,7 @@ mavencentral-mordant = "3.0.2"
 google-r8 = "8.9.35"
 maven-binarycompatiblity = "0.18.0"
 maven-dokka = "2.0.0"
+maven-vanniktech-maven-publish = "0.33.0"
 
 [libraries]
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "mavencentral-coroutines" }
@@ -32,6 +33,7 @@ clikt-core = { module = "com.github.ajalt.clikt:clikt", version.ref = "mavencent
 mordant-core = { module = "com.github.ajalt.mordant:mordant", version.ref = "mavencentral-mordant" }
 r8-core = { module = "com.android.tools:r8", version.ref = "google-r8" }
 jetbrains-dokka = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "maven-dokka" }
+vanniktech-maven-publish = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "maven-vanniktech-maven-publish" }
 
 [plugins]
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "mavencentral-kotlin" }
