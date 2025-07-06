@@ -4,10 +4,11 @@ import com.starter.issuechecker.IssueStatus
 import com.starter.issuechecker.readJson
 import com.starter.issuechecker.restApi
 import kotlinx.coroutines.runBlocking
-import okhttp3.mockwebserver.MockResponse
-import okhttp3.mockwebserver.MockWebServer
+import mockwebserver3.MockResponse
+import mockwebserver3.MockWebServer
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.SoftAssertions
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import java.net.URI
@@ -19,13 +20,17 @@ internal class YoutrackStatusResolverTest {
 
     @BeforeEach
     internal fun setUp() {
+        server.start()
         val api = restApi(server.url("/").toString())
         resolver = YoutrackStatusResolver(api.create(YoutrackService::class.java))
     }
 
+    @AfterEach
+    internal fun tearDown() = server.close()
+
     @Test
     internal fun `correctly interprets youtrack response`() = runBlockingTest {
-        server.enqueue(MockResponse().setBody(readJson("youtrack.json")))
+        server.enqueue(MockResponse(body = readJson("youtrack.json")))
 
         val result = resolver.resolve(URI.create("https://youtrack.jetbrains.com/issue/KT-34230"))
 
