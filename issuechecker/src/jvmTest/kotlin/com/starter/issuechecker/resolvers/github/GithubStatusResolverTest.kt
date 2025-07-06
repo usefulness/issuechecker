@@ -4,10 +4,11 @@ import com.starter.issuechecker.IssueStatus
 import com.starter.issuechecker.readJson
 import com.starter.issuechecker.restApi
 import kotlinx.coroutines.runBlocking
-import okhttp3.mockwebserver.MockResponse
-import okhttp3.mockwebserver.MockWebServer
+import mockwebserver3.MockResponse
+import mockwebserver3.MockWebServer
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.SoftAssertions.assertSoftly
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import retrofit2.HttpException
@@ -20,13 +21,17 @@ internal class GithubStatusResolverTest {
 
     @BeforeEach
     internal fun setUp() {
+        server.start()
         val api = restApi(server.url("/").toString())
         resolver = GithubStatusResolver(api.create(GithubService::class.java))
     }
 
+    @AfterEach
+    internal fun tearDown() = server.close()
+
     @Test
     internal fun `correctly interprets github response`() = runBlockingTest {
-        server.enqueue(MockResponse().setBody(readJson("github.json")))
+        server.enqueue(MockResponse(body = readJson("github.json")))
 
         val result = resolver.resolve(URI.create("https://github.com/apollographql/apollo-android/issues/2207"))
 
@@ -35,7 +40,7 @@ internal class GithubStatusResolverTest {
 
     @Test
     internal fun `correctly interprets github error response`() = runBlockingTest {
-        server.enqueue(MockResponse().setResponseCode(400))
+        server.enqueue(MockResponse(code = 400))
 
         val result = runCatching { resolver.resolve(URI.create("https://github.com/apollographql/apollo-android/pull/2207")) }
 

@@ -5,7 +5,7 @@ mavencentral-kotlin = "2.2.0"
 mavencentral-junit = "5.13.3"
 mavencentral-assertj = "3.27.3"
 mavencentral-coroutines = "1.10.2"
-mavencentral-okhttp = "4.12.0"
+mavencentral-okhttp = "5.0.0"
 mavencentral-okio = "3.15.0"
 mavencentral-retrofit = "3.0.0"
 mavencentral-kotlinx-serialization = "1.9.0"
@@ -21,7 +21,7 @@ coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", ve
 coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "mavencentral-coroutines" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "mavencentral-kotlinx-serialization" }
 okhttp-core = { module = "com.squareup.okhttp3:okhttp", version.ref = "mavencentral-okhttp" }
-okhttp-mockwebserver = { module = "com.squareup.okhttp3:mockwebserver", version.ref = "mavencentral-okhttp" }
+okhttp-mockwebserver = { module = "com.squareup.okhttp3:mockwebserver3", version.ref = "mavencentral-okhttp" }
 okio-core = { module = "com.squareup.okio:okio", version.ref = "mavencentral-okio" }
 retrofit-bom = { module = "com.squareup.retrofit2:retrofit-bom", version.ref = "mavencentral-retrofit" }
 retrofit-core = { module = "com.squareup.retrofit2:retrofit" }
