@@ -11,6 +11,7 @@
 -dontwarn android.annotation.TargetApi
 -dontwarn android.os.Handler
 -dontwarn android.os.Looper
+-dontwarn android.os.Build$VERSION
 
 
 ### Retrofit
@@ -77,13 +78,11 @@
 # JSR 305 annotations are for embedding nullability information.
 -dontwarn javax.annotation.**
 
-# A resource is loaded with a relative path so the package of this class must be preserved.
--keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
-
 # Animal Sniffer compileOnly dependency to ensure APIs are compatible with older versions of Java.
 -dontwarn org.codehaus.mojo.animal_sniffer.*
 
 # OkHttp platform used only on JVM and when Conscrypt and other security providers are available.
+# May be used with robolectric or deliberate use of Bouncy Castle on Android
 -dontwarn okhttp3.internal.platform.**
 -dontwarn org.conscrypt.**
 -dontwarn org.bouncycastle.**
