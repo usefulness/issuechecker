@@ -8,7 +8,6 @@ import org.gradle.jvm.tasks.Jar
 import org.gradle.language.jvm.tasks.ProcessResources
 import org.gradle.plugins.signing.SigningExtension
 import org.jetbrains.dokka.gradle.DokkaTask
-import kotlin.text.set
 
 @Suppress("unused")
 class PublishingPlugin : Plugin<Project> {
