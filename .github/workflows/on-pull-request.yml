@@ -50,8 +50,6 @@ jobs:
 
       - run: ./gradlew check
 
-      - run: ./gradlew projectCoverage
-
       - run: ./gradlew publishToMavenLocal
 
       - run: git diff --exit-code
@@ -61,11 +59,6 @@ jobs:
         with:
           name: test-results
           path: "${{ github.workspace }}/**/build/reports/tests"
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: jacoco-report
-          path: "${{ github.workspace }}/**/build/reports/jacoco"
 
       - run: ./gradlew publishToMavenLocal
         env:
