@@ -13,7 +13,7 @@ mavencentral-clikt = "5.0.3"
 mavencentral-mordant = "3.0.2"
 google-r8 = "8.7.18"
 maven-binarycompatiblity = "0.18.1"
-maven-dokka = "2.0.0"
+maven-dokka = "2.1.0"
 maven-vanniktech-maven-publish = "0.34.0"
 
 [libraries]
