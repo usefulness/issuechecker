@@ -2,7 +2,7 @@
 gradle-starter = "0.91.0"
 gradle-gradleup-shadow = "9.3.1"
 mavencentral-kotlin = "2.2.20"
-mavencentral-junit = "5.14.2"
+mavencentral-junit = "5.14.3"
 mavencentral-assertj = "3.27.7"
 mavencentral-coroutines = "1.10.2"
 mavencentral-okhttp = "5.3.2"
