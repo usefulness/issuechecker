@@ -82,8 +82,15 @@ def r8JarProvider = tasks.register('r8Jar', JavaExec) { task ->
             fatJarFile.get().asFile.path,
     ]
 }
-artifacts {
-    archives file: r8File, name: 'binary', type: 'jar', builtBy: r8JarProvider, classifier: 'diffuse'
+
+def assembleR8Jar = tasks.register("archiveR8Jar", Jar) {
+    archiveClassifier = "r8"
+    from(r8File)
+    dependsOn(r8JarProvider)
+}
+
+tasks.named("assemble") {
+    dependsOn(assembleR8Jar)
 }
 
 publishing {
