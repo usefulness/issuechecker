@@ -1,6 +1,6 @@
 [versions]
 gradle-starter = "0.95.0"
-gradle-gradleup-shadow = "9.4.1"
+gradle-gradleup-shadow = "9.4.2"
 mavencentral-kotlin = "2.3.21"
 mavencentral-junit = "6.1.0"
 mavencentral-assertj = "3.27.7"
