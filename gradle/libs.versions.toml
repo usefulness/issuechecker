@@ -12,7 +12,7 @@ mavencentral-kotlinx-serialization = "1.11.0"
 mavencentral-clikt = "5.1.0"
 mavencentral-mordant = "3.1.0"
 google-r8 = "9.4.17"
-maven-binarycompatiblity = "0.18.1"
+maven-binarycompatiblity = "0.18.2"
 maven-dokka = "2.2.0"
 maven-vanniktech-maven-publish = "0.37.0"
 
