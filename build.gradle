@@ -14,7 +14,7 @@ commonConfig {
 
 allprojects {
     pluginManager.withPlugin("kotlin") { plugin ->
-        configurations.named { it != "detekt" }.configureEach {
+        configurations.named { it != "ktlint" }.configureEach {
             resolutionStrategy.eachDependency {
                 if (requested.group == 'org.jetbrains.kotlin' && requested.name.startsWith("kotlin")) {
                     useVersion libs.versions.mavencentral.kotlin.get()
