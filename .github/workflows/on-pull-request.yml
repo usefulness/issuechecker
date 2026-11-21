@@ -41,8 +41,6 @@ jobs:
       - uses: gradle/actions/wrapper-validation@v6
 
       - uses: gradle/actions/setup-gradle@v6
-        with:
-          dependency-graph: generate-and-submit
 
       - run: ./gradlew projectCodestyle
 

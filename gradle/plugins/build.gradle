@@ -25,5 +25,9 @@ gradlePlugin {
             id = 'com.starter.publishing'
             implementationClass = 'PublishingPlugin'
         }
+        conventionsPlugin {
+            id = 'com.starter.conventions'
+            implementationClass = 'ConventionsPlugin'
+        }
     }
 }

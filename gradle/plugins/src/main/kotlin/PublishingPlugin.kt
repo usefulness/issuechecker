@@ -13,7 +13,7 @@ class PublishingPlugin : Plugin<Project> {
 
         pluginManager.withPlugin("org.jetbrains.kotlin.jvm") {
             tasks.named("processResources", ProcessResources::class.java) {
-                from(rootProject.file("LICENSE"))
+                from(isolated.rootProject.projectDirectory.file("LICENSE"))
             }
         }
 
