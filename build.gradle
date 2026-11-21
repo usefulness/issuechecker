@@ -22,7 +22,7 @@ allprojects {
             }
         }
         kotlin {
-            jvmToolchain(25)
+            jvmToolchain(libs.versions.java.compilation.get().toInteger())
         }
 
         tasks.withType(KotlinJvmCompile).configureEach {

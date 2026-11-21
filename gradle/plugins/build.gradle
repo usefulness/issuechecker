@@ -16,7 +16,7 @@ dependencies {
 }
 
 kotlin {
-    jvmToolchain(25)
+    jvmToolchain(libs.versions.java.compilation.get().toInteger())
 }
 
 gradlePlugin {
