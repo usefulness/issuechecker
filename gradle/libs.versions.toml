@@ -12,7 +12,7 @@ mavencentral-retrofit = "3.0.0"
 mavencentral-kotlinx-serialization = "1.13.0"
 mavencentral-clikt = "5.2.1"
 mavencentral-mordant = "3.1.1"
-google-r8 = "9.5.33"
+google-r8 = "9.5.34"
 maven-dokka = "2.3.0"
 maven-vanniktech-maven-publish = "0.37.0"
 
